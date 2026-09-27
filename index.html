@@ -75,6 +75,8 @@ th{background:#101217}
   .nav-group{position:static}
   .nav-menu{position:absolute;left:auto;top:auto;margin-top:0}
 }
+
+.conference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:18px}.conference-card{background:linear-gradient(180deg,#090a0c,#070809);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:28px 26px;box-shadow:0 14px 35px rgba(0,0,0,.18)}.conference-card h3{margin:0 0 22px;color:#f6be64;font-size:24px;font-weight:800}.conference-team{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:18px}.conference-team:last-child{border-bottom:0}.conference-team b{color:#f6be64;font-size:18px}@media(max-width:900px){.conference-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.conference-grid{grid-template-columns:1fr}.conference-card{padding:22px 20px}.conference-card h3{font-size:21px}}
 </style>
 </head>
 <body>
@@ -139,7 +141,7 @@ th{background:#101217}
       <div class="hero-card">
         <img src="vfa-football.webp" alt="VFA Football logo">
         <strong>32 TEAMS</strong>
-        <span>Series 3 • The Reckoning • Deadline TBD</span>
+        <span>Series 3 • The Reckoning • Deadline August 2nd</span>
       </div>
     </div>
   </div>
@@ -153,7 +155,7 @@ th{background:#101217}
 
   <div class="series-strip">
     <div><span class="eyebrow">CURRENT SERIES</span><strong>Series 3</strong><span>3 games per team</span></div>
-    <div class="series-path"><span>Series 1</span><b>→</b><span class="current">Series 3</span><b>→</b><span>Series 3</span><b>→</b><span>Series 4</span><b>→</b><span>Playoffs</span></div>
+    <div class="series-path"><span>Series 1</span><b>→</b><span>Series 2</span><b>→</b><span class="current">Series 3</span><b>→</b><span>Series 4</span><b>→</b><span>Playoffs</span></div>
   </div>
 
   <div class="section-head home-section-head">
@@ -227,13 +229,26 @@ th{background:#101217}
 </div>
 </section>
 
-<section id="schedule" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">VFA Football</div><h2>Schedule</h2><p>Official schedule space for regular games, primetime and playoffs.</p></div></div><div class="grid"><div class="card"><span class="badge">Primetime</span><h3>San Francisco (5-1) vs Miami (5-1)</h3><p>Featured Series 3 matchup.</p></div><div class="card"><span class="badge">Primetime</span><h3>Minneapolis (6-0) vs Houston (5-1)</h3><p>Featured Series 3 matchup.</p></div><div class="card"><span class="badge">Primetime</span><h3>Charlotte (5-1) vs Philadelphia (5-1)</h3><p>Featured Series 3 matchup.</p></div><div class="card"><span class="badge">Primetime</span><h3>Indianapolis (5-1) vs Detroit (5-1)</h3><p>Featured Series 3 matchup.</p></div><div class="card"><h3>Live schedule integration</h3><p>Future game JSON reports can feed completed results into the schedule automatically.</p></div></div></div></section>
+<section id="schedule" class="section"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Series 3</div><h2>VFA Conferences</h2><p>Series 3 conference standings — four teams in each conference.</p></div><span class="badge deadline-badge">MATCHUP DEADLINE: AUGUST 2ND</span></div>
+<div class="conference-grid">
+<div class="conference-card"><h3>Hillside Conference</h3><div class="conference-team"><span>Minneapolis</span><b>6-0</b></div><div class="conference-team"><span>Houston</span><b>5-1</b></div><div class="conference-team"><span>Detroit</span><b>5-1</b></div><div class="conference-team"><span>Indianapolis</span><b>5-1</b></div></div>
+<div class="conference-card"><h3>Asphalt Conference</h3><div class="conference-team"><span>Philadelphia</span><b>5-1</b></div><div class="conference-team"><span>Miami</span><b>5-1</b></div><div class="conference-team"><span>Charlotte</span><b>5-1</b></div><div class="conference-team"><span>Washington</span><b>5-1</b></div></div>
+<div class="conference-card"><h3>West Coast Conference</h3><div class="conference-team"><span>Boston</span><b>5-1</b></div><div class="conference-team"><span>San Diego</span><b>5-1</b></div><div class="conference-team"><span>San Francisco</span><b>5-1</b></div><div class="conference-team"><span>Madison</span><b>4-2</b></div></div>
+<div class="conference-card"><h3>Uptown Conference</h3><div class="conference-team"><span>Fayetteville</span><b>4-2</b></div><div class="conference-team"><span>Baltimore</span><b>4-2</b></div><div class="conference-team"><span>New York Empire</span><b>4-2</b></div><div class="conference-team"><span>Tampa Bay</span><b>4-2</b></div></div>
+<div class="conference-card"><h3>Parkside Conference</h3><div class="conference-team"><span>Seattle</span><b>4-2</b></div><div class="conference-team"><span>Green Bay</span><b>4-2</b></div><div class="conference-team"><span>Phoenix</span><b>4-2</b></div><div class="conference-team"><span>Nashville</span><b>3-3</b></div></div>
+<div class="conference-card"><h3>Eastern Conference</h3><div class="conference-team"><span>New York</span><b>3-3</b></div><div class="conference-team"><span>Chicago</span><b>3-3</b></div><div class="conference-team"><span>Syracuse</span><b>3-3</b></div><div class="conference-team"><span>Denver</span><b>3-3</b></div></div>
+<div class="conference-card"><h3>Southern Conference</h3><div class="conference-team"><span>Atlanta</span><b>3-3</b></div><div class="conference-team"><span>Newark</span><b>2-4</b></div><div class="conference-team"><span>Los Ángeles</span><b>2-4</b></div><div class="conference-team"><span>Dallas</span><b>2-4</b></div></div>
+<div class="conference-card"><h3>East Coast Conference</h3><div class="conference-team"><span>Oakland</span><b>2-4</b></div><div class="conference-team"><span>Baton Rouge</span><b>2-4</b></div><div class="conference-team"><span>New Orleans</span><b>2-4</b></div><div class="conference-team"><span>Jacksonville</span><b>2-4</b></div></div>
+</div></div></section>
 
 <section id="standings" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Series 3</div><h2>Standings</h2><p>Current league table. Sort columns by clicking a header.</p></div></div><div class="table-wrap"><table id="standingsTable"><thead><tr><th data-sort="rank">Rank</th><th data-sort="team">Team</th><th data-sort="division">Division</th><th data-sort="record">W-L</th><th data-sort="pd">PD</th></tr></thead><tbody></tbody></table></div></div></section>
 
 <section id="statistics" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Player Data</div><h2>Statistics</h2><p>Designed for automatic game-report updates from VFA JSON score reports.</p></div></div><input id="statSearch" class="searchbar" placeholder="Search player or team..."><div class="filters"><button class="active" data-season="series3">Series 3</button><button data-season="all">All-Time</button><button data-pos="ALL">All</button><button data-pos="QB">QB</button><button data-pos="WR">WR</button><button data-pos="DB">DB</button><button data-pos="LB">LB</button><button data-pos="DE">DE</button></div><div class="table-wrap"><table><thead><tr><th>Player</th><th>Team</th><th>Pos</th><th>GP</th><th>Pass Yds</th><th>Pass TD</th><th>Rush Yds</th><th>Rush TD</th><th>Rec Yds</th><th>Rec TD</th><th>INT</th><th>Rating</th></tr></thead><tbody id="statsBody"></tbody></table></div><div class="notice">Official player statistics are intended to flow from Discord <b>/score-report</b> into the VFA source of truth, then into standings, player stats, team records and ratings. No fake player statistics are displayed.</div></div></section>
 
-<section id="series" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Series 3</div><h2>Series Matchups</h2><p>Every team and its three Series 3 opponents are listed below.</p></div><span class="badge deadline-badge">DEADLINE: TBD</span></div><div class="notice"><b>Series 3 Matchup Deadline:</b> TBD. Each team is shown with the other teams in its division/conference grouping so there is no confusion about who they play.</div><div class="grid matchup-grid">
+
+
+<section id="series" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Series 3</div><h2>Series Matchups</h2><p>Every team and its three Series 3 opponents are listed below.</p></div><span class="badge deadline-badge">DEADLINE: AUGUST 2ND</span></div><div class="notice"><b>Series 3 Matchup Deadline:</b> August 2nd. Each team is shown with the other teams in its division/conference grouping so there is no confusion about who they play.</div><div class="grid matchup-grid">
 <div class="card matchup-card"><span class="badge">D1 • Hillside</span><h3>Houston</h3><p><b>Plays:</b> Minneapolis, Green Bay, San Francisco</p><h3>Minneapolis</h3><p><b>Plays:</b> Houston, Green Bay, San Francisco</p><h3>Green Bay</h3><p><b>Plays:</b> Houston, Minneapolis, San Francisco</p><h3>San Francisco</h3><p><b>Plays:</b> Houston, Minneapolis, Green Bay</p></div>
 <div class="card matchup-card"><span class="badge">D1 • Asphalt</span><h3>Washington</h3><p><b>Plays:</b> Miami, Charlotte, Philadelphia</p><h3>Miami</h3><p><b>Plays:</b> Washington, Charlotte, Philadelphia</p><h3>Charlotte</h3><p><b>Plays:</b> Washington, Miami, Philadelphia</p><h3>Philadelphia</h3><p><b>Plays:</b> Washington, Miami, Charlotte</p></div>
 <div class="card matchup-card"><span class="badge">D1 • West Coast</span><h3>NY Empire</h3><p><b>Plays:</b> Chicago, Baltimore, Seattle</p><h3>Chicago</h3><p><b>Plays:</b> NY Empire, Baltimore, Seattle</p><h3>Baltimore</h3><p><b>Plays:</b> NY Empire, Chicago, Seattle</p><h3>Seattle</h3><p><b>Plays:</b> NY Empire, Chicago, Baltimore</p></div>
