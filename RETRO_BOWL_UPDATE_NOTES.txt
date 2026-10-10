@@ -1,0 +1,24 @@
+VFA RETRO BOWL UPDATE — COACH OVR / SIMULATION / PLAYER VISUALS
+
+Changes in this package:
+- Head Coach (HC), Offensive Coordinator (OC), and Defensive Coordinator (DC) start at 75 OVR.
+- Coach upgrades use separate saved upgrade levels, raise OVR by +1, and cannot exceed 99 OVR. Existing saves are migrated from the older level-based coaching values.
+- Both Franchise Home and Front Office Simulate Game controls are supported; the Home button provides feedback while simulation runs and stays disabled after the regular season ends.
+- A safe animation-loop wrapper catches unexpected gameplay frame errors and recovers stuck MyCareer WR snaps instead of allowing one exception to stop future frames.
+- Player helmets are larger and have a visible logo patch from the offensive team's logo or defensive team's logo, with a face mask and team-color trim.
+- Existing VFA League Hub pages, Retro Bowl, previous streams, special free agents, trade center, and other prior features remain included.
+
+Notes:
+- Browser save data is local to each browser/device. Clearing site data may reset franchise progress.
+- Global multiplayer still depends on the peer connection and network conditions.
+- Please test a complete WR career game and the Simulate Game button in the published site; automated syntax checks do not replace live gameplay testing.
+
+PRX Legends Edition / MyCareer update:
+- Added PRX to Free Agency as a Legends Edition WR at 88 OVR, archetype: Explosive Playmaker.
+- PRX ratings: Hands 85, Catch in Traffic 88, Agility 89, Speed 93, Clutch 87, Route Running 83, Acceleration 88.
+- Player cards show an archetype and attribute details remain available by clicking a player.
+- MyCareer setup now lets players choose PRX, Web, Zluq, or PrideofPhiladelphia as a playable QB/WR character, or create a custom QB/WR.
+- MyCareer WR movement now scales more noticeably with Speed, Acceleration, and Agility, with caps to keep top ratings from becoming runaway-fast.
+- Franchise screen, field dimensions, and overall page layout were preserved.
+
+New Legends Edition free agents added: Storcity (QB, 96 OVR), Supporter (QB, 92 OVR), Memeja (WR, 94 OVR), and Lat (WR, 88 OVR). They also appear as custom MyCareer selections.
