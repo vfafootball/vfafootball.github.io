@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VFA Football — League Statistics</title>
+    <script>
+      // GitHub Pages serves 404.html for any unknown path under /hub/.
+      // Redirect to the hash-based homepage so direct links and refreshes work.
+      var path = window.location.pathname;
+      if (path && path !== '/hub/' && !path.endsWith('.html')) {
+        window.location.replace('/hub/#' + path);
+      } else {
+        window.location.replace('/hub/#/home');
+      }
+    </script>
+  </head>
+  <body>
+    <div style="font-family: system-ui, sans-serif; background: #050505; color: #aaa; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
+      <p>Redirecting to VFA Football…</p>
+    </div>
+  </body>
+</html>
