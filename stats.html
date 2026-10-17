@@ -72,8 +72,31 @@ header::after{content:"✦  OCT 4–8  ✦";position:absolute;right:18px;top:2px
 footer{position:relative;overflow:hidden}
 footer::after{content:"✦  SPOOKY SEASON  ✦";position:absolute;right:24px;bottom:4px;color:rgba(255,122,50,.22);font-size:7px;letter-spacing:.14em;font-weight:900;pointer-events:none}
 
+
+/* VFA League Hub — black and gold theme; remove old seasonal styling */
+:root{
+ --bg:#000000;--surface:#101010;--surface-2:#171717;--surface-3:#222222;
+ --line:#49391d;--line-soft:#302719;--blue:#d4a84f;--blue-2:#f6be64;
+ --text:#f5f5f5;--muted:#b7b2a8;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:14px;
+ --halloween-orange:#f6be64;--halloween-purple:#f6be64;--halloween-glow:rgba(246,190,100,.12)
+}
+body::before{display:none!important}
+header::before,header::after,footer::after,.home-intro::after,.season-banner,
+.eyebrow::after{display:none!important;content:none!important}
+.panel,.empty-state{background:#101010;border-color:#3a2e1a}
+nav a:hover{background:#211b10;color:#f6be64}
+.stats-embed-panel{padding:10px;background:#050505;border-color:#49391d}
+@media(max-width:700px){.stats-embed-panel{padding:4px}.stats-embed-panel iframe{height:1250px!important}}
+
 </style></head><body>
-<header><div class="wrap header-inner"><a class="brand" href="index.html">VFA FOOTBALL <span>/ SERIES 4</span></a><nav><a href="index.html">Home</a><a href="standings.html">Standings</a><a href="teams.html">Teams</a><a href="conferences.html">Conferences</a><a href="matchups.html">Matchups</a><a href="stats.html">Player Stats</a><a href="about.html">About</a><a href="https://vfafootball.github.io/" target="_blank" rel="noopener">Rulebook</a></nav></div></header>
-<div class="wrap season-banner" role="note"><span>🎃</span><strong>DEADLINE: OCTOBER 4TH — OCTOBER 8TH</strong><span>🕸</span></div>
-<main class="wrap page"><div class="page-head"><div><div class="eyebrow">VFA FOOTBALL / SERIES 4</div><h1>Player Statistics</h1><p>League-wide player statistics are reserved for official bot-fed data.</p></div><a class="back" href="index.html">← Home</a></div>
-<section class="panel halloween-corner"><div class="empty-state halloween-corner"><strong>Waiting for official league bot statistics.</strong><br>Matchup-specific QB statistics belong on the Matchups & Schedule page, not here.</div></section></main><footer><div class="wrap footer-inner"><span>VFA Football • Series 4</span><span>32 Teams • 8 Conferences • 3-Game Conference Schedule</span></div></footer></body></html>
+<header><div class="wrap header-inner"><a class="brand" href="index.html">VFA FOOTBALL <span>/ LEAGUE HUB</span></a><nav><a href="index.html">Home</a><a href="standings.html">Standings</a><a href="teams.html">Teams</a><a href="conferences.html">Conferences</a><a href="matchups.html">Matchups</a><a href="stats.html">Player Stats</a><a href="about.html">About</a><a href="https://vfafootball.github.io/" target="_blank" rel="noopener">Rulebook</a></nav></div></header>
+
+<main class="wrap page"><div class="page-head"><div><div class="eyebrow">VFA FOOTBALL / LEAGUE HUB</div><h1>Player Statistics</h1><p>Official VFA player statistics dashboard.</p></div><a class="back" href="index.html">← Home</a></div>
+<section class="panel stats-embed-panel" aria-label="VFA player statistics dashboard">
+  <iframe
+    src="hub/#/stats"
+    title="VFA Player Statistics Dashboard"
+    loading="eager"
+    style="display:block;width:100%;height:1100px;border:0;background:#000;border-radius:10px"
+  ></iframe>
+</section></main><footer><div class="wrap footer-inner"><span>VFA Football • League Hub</span><span>32 Teams • Official League Statistics</span></div></footer></body></html>
