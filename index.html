@@ -270,9 +270,16 @@ const VFA_SUPABASE_PUBLIC_KEY='sb_publishable_w4J4XmzsLCGT1OAQ5gCD0w_9bg_hckO';
   if(Date.now()-lastSentAt<1200){status.textContent='Please wait a moment before sending again';return;}
   lastSentAt=Date.now();send.disabled=true;
   try{localStorage.setItem('vfaChatUsername',username);}catch(e){}
-  const {error}=await client.from('vfa_chat_messages').insert({username,message});
-  if(error){status.textContent='Message not sent — chat setup may be incomplete';console.error('VFA chat send:',error.message);}
-  else{messageInput.value='';status.textContent='Live · connected';}
+  try{
+   const {error}=await client.from('vfa_chat_messages').insert({username,message});
+   if(error){
+    status.textContent='Chat send failed: '+(error.code||'error')+' — '+(error.message||'Unknown database error');
+    console.error('VFA chat send:',error);
+   }else{messageInput.value='';status.textContent='Live · connected';}
+  }catch(error){
+   status.textContent='Chat connection failed: '+(error&&error.message?error.message:'Please refresh and try again');
+   console.error('VFA chat send exception:',error);
+  }
   send.disabled=false;messageInput.focus();
  });
 })();
