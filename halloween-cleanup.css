@@ -1,0 +1,79 @@
+/* VFA League Hub — Halloween visual cleanup */
+:root {
+  color-scheme: dark;
+  --halloween-bg: #09080d;
+  --halloween-panel: #14111b;
+  --halloween-panel-soft: #1b1622;
+  --halloween-border: rgba(185, 123, 255, .20);
+  --halloween-orange: #ff8a32;
+  --halloween-purple: #a66bff;
+  --halloween-text: #f7f3fb;
+  --halloween-muted: #b7adbf;
+}
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--halloween-bg) !important;
+  color: var(--halloween-text);
+  line-height: 1.58;
+  letter-spacing: .005em;
+}
+body::before { pointer-events: none; }
+header, .header, .site-header, .topbar, .navbar, nav {
+  border-color: var(--halloween-border) !important;
+}
+nav, .navbar, .nav, .nav-links, .navigation, .top-nav {
+  gap: .5rem;
+}
+nav a, .navbar a, .nav a, .nav-links a, .navigation a, .top-nav a {
+  border-radius: 10px;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+nav a:hover, .navbar a:hover, .nav a:hover, .nav-links a:hover, .navigation a:hover, .top-nav a:hover {
+  color: #fff !important;
+  background: rgba(166, 107, 255, .12);
+}
+a { text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--halloween-orange) !important;
+  outline-offset: 3px;
+}
+main, .container, .page-container, .content, .main-content {
+  max-width: 1240px;
+}
+section, .section, .panel, .card, .content-card, .game-card, .team-card, .stat-card, .feature-card, .info-card, .bracket-card {
+  border-color: var(--halloween-border) !important;
+}
+.panel, .card, .content-card, .game-card, .team-card, .stat-card, .feature-card, .info-card, .bracket-card {
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .14);
+}
+h1, h2, h3, h4 { line-height: 1.2; text-wrap: balance; }
+h1 { letter-spacing: -.025em; }
+p, .muted, .subtitle, .description, small { color: var(--halloween-muted); }
+button, .button, .btn, a.button, a.btn {
+  border-radius: 10px;
+  transition: transform .16s ease, filter .16s ease;
+}
+button:hover, .button:hover, .btn:hover, a.button:hover, a.btn:hover {
+  filter: brightness(1.08);
+}
+table { border-collapse: separate; border-spacing: 0; overflow: hidden; }
+th { color: #ffd4b0; }
+td, th { border-color: rgba(185, 123, 255, .15) !important; }
+input, select, textarea {
+  border-radius: 10px !important;
+  border-color: var(--halloween-border) !important;
+}
+img { max-width: 100%; }
+@media (max-width: 720px) {
+  body { line-height: 1.5; }
+  main, .container, .page-container, .content, .main-content { width: min(100% - 24px, 1240px); }
+  section, .section { margin-block: 14px; }
+  .panel, .card, .content-card, .game-card, .team-card, .stat-card, .feature-card, .info-card, .bracket-card {
+    border-radius: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
