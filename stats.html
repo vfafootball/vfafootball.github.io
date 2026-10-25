@@ -89,15 +89,196 @@ nav a:hover{background:#211b10;color:#f6be64}
 @media(max-width:700px){.stats-embed-panel{padding:4px}.stats-embed-panel iframe{height:1250px!important}}
 
 </style><style id="vfa-halloween-theme">:root{--bg:#050408!important;--surface:#11101b!important;--surface-2:#19152a!important;--surface-3:#241b39!important;--line:#563078!important;--line-soft:#38234f!important;--blue:#ff7918!important;--blue-2:#ff9b35!important;--gold:#ff7918!important;--gold-soft:#ffd0a1!important;--text:#f8f4ff!important;--muted:#bcb0ce!important;--panel:#11101b!important;--panel-2:#19152a!important}html{background:#050408!important;color-scheme:dark}body{background-color:#050408!important;color:#f8f4ff!important}header,.site-header{background:rgba(5,4,8,.96)!important;border-color:#563078!important}nav a:hover,nav a.active,.brand span,.eyebrow,.back,.arrow,.text-btn{color:#ff9b35!important}.panel,.home-card,.player-gfx-panel,.game-card,.hero-card,.card,.team-card,.stat-card,.table-wrap,.content-card,.feature-card,.info-card,.bracket-card,.match-card,.history-card,.video-card,.rule-card,.conference-card,.search-panel,.standings-card{background-color:#11101b!important;border-color:#38234f!important}.home-card:hover,.team-card:hover,.card:hover{background-color:#19152a!important;border-color:#ff7918!important}button,.primary-btn,.discord-btn,.btn-primary,.vote-btn,.search-btn{background:#ff7918!important;border-color:#ff9b35!important;color:#160b1e!important}.secondary-btn,.btn-secondary{border-color:#8050a7!important;color:#ffd0a1!important}a:hover{color:#ffb66f}footer,.quick-stats,.section.alt{background-color:#09070f!important;border-color:#38234f!important}th{background:#19152a!important;color:#ffb66f!important}td,th{border-color:#38234f!important}input,select,textarea{background:#0c0a13!important;color:#f8f4ff!important;border-color:#563078!important}.badge,.pill,.tag{border-color:#8050a7!important}</style>
-<link rel="stylesheet" href="/halloween-cleanup.css"></head><body>
+<link rel="stylesheet" href="/halloween-cleanup.css">
+<style>
+:root{--official-gold:#f6be64;--official-orange:#ff7a32;--official-purple:#7c4d9e}
+.official-stats{display:grid;gap:18px}
+.official-status{padding:11px 14px;border:1px solid rgba(246,190,100,.25);border-radius:10px;background:rgba(246,190,100,.06);color:#cfc6b4;font-size:12px}
+.official-results,.official-player-panel{padding:20px;border:1px solid rgba(246,190,100,.22);border-radius:14px;background:linear-gradient(145deg,#111 0%,#15120d 100%);box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.official-section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+.official-section-head h2{margin:4px 0 0;font-size:22px;color:#f8f4eb}
+.official-section-head p{margin:5px 0 0;color:#aaa;font-size:12px}
+.official-count{white-space:nowrap;padding:5px 9px;border:1px solid rgba(246,190,100,.28);border-radius:999px;color:var(--official-gold);font-size:10px;font-weight:850}
+.official-game-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.official-game{padding:14px;border:1px solid #30291e;border-radius:11px;background:#0b0b0b}
+.official-game-meta{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px;color:#8f887c;font-size:10px}
+.official-scoreline{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px}
+.official-side{min-width:0}.official-side:last-child{text-align:right}
+.official-side strong{display:block;overflow-wrap:anywhere;color:#f5f1e8;font-size:13px}
+.official-side span{display:block;margin-top:3px;color:var(--official-gold);font-size:22px;font-weight:900;font-variant-numeric:tabular-nums}
+.official-final{color:#655d50;font-size:9px;font-weight:900;letter-spacing:.12em}
+.official-toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.official-toolbar input,.official-toolbar select,.official-toolbar button{min-height:39px;padding:9px 11px;border:1px solid #383126;border-radius:8px;background:#080808;color:#f3eee4;font:inherit;font-size:12px}
+.official-toolbar input{flex:1;min-width:190px}.official-toolbar select{max-width:100%}
+.official-toolbar button{cursor:pointer;background:#211a10;border-color:#594528;color:var(--official-gold);font-weight:800}
+.official-table-wrap{width:100%;overflow:auto;border:1px solid #2b261e;border-radius:10px}
+.official-table{width:100%;min-width:1250px;border-collapse:collapse;font-size:12px}
+.official-table th,.official-table td{padding:11px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid #26231e;font-variant-numeric:tabular-nums}
+.official-table th{position:sticky;top:0;background:#18140e;color:#c9b88e;font-size:9px;letter-spacing:.07em;text-transform:uppercase}
+.official-table th:first-child,.official-table td:first-child,.official-table th:nth-child(2),.official-table td:nth-child(2){text-align:left}
+.official-table td{color:#d7d2c8}.official-table tbody tr:hover{background:rgba(246,190,100,.045)}
+.official-player-name{font-weight:850;color:#fff!important}.official-team-name{color:#b3a58a!important}
+.official-empty{padding:26px!important;text-align:center!important;color:#9a9284!important;white-space:normal!important}
+.official-footnote{margin:12px 0 0;color:#777064;font-size:10px}
+@media(max-width:700px){.official-results,.official-player-panel{padding:14px}.official-game-grid{grid-template-columns:1fr}.official-section-head{align-items:flex-start}.official-section-head h2{font-size:19px}}
+</style></head><body>
 <header><div class="wrap header-inner"><a class="brand" href="index.html">VFA FOOTBALL <span>/ LEAGUE HUB</span></a><nav><a href="index.html">Home</a><a href="standings.html">Standings</a><a href="teams.html">Teams</a><a href="conferences.html">Conferences</a><a href="matchups.html">Matchups</a><a href="stats.html">Player Stats</a><a href="about.html">About</a><a href="https://vfafootball.github.io/" target="_blank" rel="noopener">Rulebook</a></nav></div></header>
 
 <main class="wrap page"><div class="page-head"><div><div class="eyebrow">VFA FOOTBALL / LEAGUE HUB</div><h1>Player Statistics</h1><p>Official VFA player statistics dashboard.</p></div><a class="back" href="index.html">← Home</a></div>
-<section class="panel stats-embed-panel" aria-label="VFA player statistics dashboard">
-  <iframe
-    src="hub/#/stats"
-    title="VFA Player Statistics Dashboard"
-    loading="eager"
-    style="display:block;width:100%;height:1100px;border:0;background:#000;border-radius:10px"
-  ></iframe>
-</section></main><footer><div class="wrap footer-inner"><span>VFA Football • League Hub</span><span>32 Teams • Official League Statistics</span></div></footer></body></html>
+<section class="official-stats" aria-label="Official VFA score reports and player statistics">
+  <div class="official-status" id="official-status" role="status">Connecting to official VFA statistics…</div>
+  <section class="official-results" aria-labelledby="official-results-title">
+    <div class="official-section-head"><div><div class="eyebrow">LIVE SCORE REPORTS</div><h2 id="official-results-title">Recent Game Results</h2></div><span class="official-count" id="game-count">0 games</span></div>
+    <div class="official-game-grid" id="official-games"><div class="official-empty">Loading official game results…</div></div>
+  </section>
+  <section class="official-player-panel" aria-labelledby="official-players-title">
+    <div class="official-section-head"><div><div class="eyebrow">CAREER TOTALS</div><h2 id="official-players-title">Player Statistics</h2><p>Official stats sync automatically from VFA Discord score reports.</p></div><span class="official-count" id="player-count">0 players</span></div>
+    <div class="official-toolbar">
+      <input id="player-search" type="search" placeholder="Search player or team…" aria-label="Search player or team">
+      <select id="position-filter" aria-label="Filter by position"><option value="">All positions</option><option>QB</option><option>RB</option><option>WR</option><option>DB</option><option>DEF</option><option>K</option></select>
+      <select id="sort-by" aria-label="Sort players"><option value="rating">Sort: Rating</option><option value="games_played">Games played</option><option value="total_yards">Total yards</option><option value="touchdowns">Touchdowns</option><option value="passing_yards">Passing yards</option><option value="receiving_yards">Receiving yards</option><option value="interceptions">Interceptions</option><option value="sacks">Sacks</option><option value="username">Player name</option></select>
+      <button type="button" id="refresh-stats">Refresh</button>
+    </div>
+    <div class="official-table-wrap">
+      <table class="official-table">
+        <thead><tr><th>Player</th><th>Team</th><th>POS</th><th>RTG</th><th>GP</th><th>W–L</th><th>CMP/ATT</th><th>CMP%</th><th>Pass YDS</th><th>Pass TD</th><th>Rush YDS</th><th>REC</th><th>Rec YDS</th><th>TD</th><th>INT</th><th>Sacks</th><th>Tackles</th></tr></thead>
+        <tbody id="official-player-rows"><tr><td colspan="17" class="official-empty">Loading official player statistics…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="official-footnote" id="official-updated">Stats update when new official reports are accepted.</p>
+  </section>
+</section></main><footer><div class="wrap footer-inner"><span>VFA Football • League Hub</span><span>32 Teams • Official League Statistics</span></div></footer>
+<script>
+(() => {
+  const API = 'https://ittenygolbahpenghbfi.supabase.co/rest/v1';
+  const KEY = 'sb_publishable_w4J4XmzsLCGT1OAQ5gCD0w_9bg_hckO';
+  const $ = (id) => document.getElementById(id);
+  const state = { players: [], games: [] };
+  const number = (value) => { const n = Number(value ?? 0); return Number.isFinite(n) ? n : 0; };
+  const fmt = (value) => number(value).toLocaleString('en-US');
+  const safeText = (value, fallback='—') => String(value ?? '').trim() || fallback;
+  const headers = { apikey: KEY, Authorization: 'Bearer ' + KEY };
+  async function getRows(path) {
+    const response = await fetch(API + path, { headers, cache: 'no-store' });
+    if (!response.ok) {
+      const detail = await response.text().catch(() => '');
+      throw new Error('Supabase request failed (' + response.status + ')' + (detail ? ': ' + detail.slice(0,180) : ''));
+    }
+    return response.json();
+  }
+  function setEmptyRows(message) {
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.colSpan = 17; cell.className = 'official-empty'; cell.textContent = message;
+    row.appendChild(cell); $('official-player-rows').replaceChildren(row);
+  }
+  function addCell(row, value, className='') {
+    const cell = document.createElement('td');
+    cell.textContent = value;
+    if (className) cell.className = className;
+    row.appendChild(cell);
+  }
+  function renderPlayers() {
+    const query = $('player-search').value.trim().toLowerCase();
+    const position = $('position-filter').value;
+    const sortBy = $('sort-by').value;
+    const rows = state.players.filter(p =>
+      (!position || safeText(p.position,'UNK').toUpperCase() === position) &&
+      (!query || [p.username,p.team_name,p.position].some(v => safeText(v,'').toLowerCase().includes(query)))
+    );
+    rows.sort((a,b) => {
+      if (sortBy === 'username') return safeText(a.username,'').localeCompare(safeText(b.username,''));
+      return number(b[sortBy]) - number(a[sortBy]);
+    });
+    $('player-count').textContent = rows.length + ' player' + (rows.length === 1 ? '' : 's');
+    if (!rows.length) {
+      setEmptyRows(state.players.length ? 'No players match this search yet.' : 'No official player stats yet. Once the first valid /score-report is accepted, player totals will appear here automatically.');
+      return;
+    }
+    const fragment = document.createDocumentFragment();
+    for (const p of rows) {
+      const tr = document.createElement('tr');
+      addCell(tr, safeText(p.username,'Unknown'), 'official-player-name');
+      addCell(tr, safeText(p.team_name,'Unknown team'), 'official-team-name');
+      addCell(tr, safeText(p.position,'UNK').toUpperCase());
+      addCell(tr, fmt(p.rating));
+      addCell(tr, fmt(p.games_played));
+      addCell(tr, fmt(p.wins) + '–' + fmt(p.losses));
+      addCell(tr, fmt(p.completions) + '/' + fmt(p.passing_attempts));
+      const pct = number(p.passing_attempts) ? (number(p.completions) / number(p.passing_attempts) * 100).toFixed(1) + '%' : '—';
+      addCell(tr, pct);
+      addCell(tr, fmt(p.passing_yards));
+      addCell(tr, fmt(p.passing_tds));
+      addCell(tr, fmt(p.rushing_yards));
+      addCell(tr, fmt(p.receptions));
+      addCell(tr, fmt(p.receiving_yards));
+      addCell(tr, fmt(p.touchdowns));
+      addCell(tr, fmt(p.interceptions));
+      addCell(tr, fmt(p.sacks));
+      addCell(tr, fmt(p.tackles));
+      fragment.appendChild(tr);
+    }
+    $('official-player-rows').replaceChildren(fragment);
+  }
+  function renderGames() {
+    $('game-count').textContent = state.games.length + ' game' + (state.games.length === 1 ? '' : 's');
+    const target = $('official-games');
+    if (!state.games.length) {
+      const empty = document.createElement('div');
+      empty.className = 'official-empty'; empty.textContent = 'No official game results have been submitted yet.';
+      target.replaceChildren(empty); return;
+    }
+    const fragment = document.createDocumentFragment();
+    for (const game of state.games) {
+      const card = document.createElement('article'); card.className = 'official-game';
+      const meta = document.createElement('div'); meta.className = 'official-game-meta';
+      const series = document.createElement('span'); series.textContent = safeText(game.series, safeText(game.season, 'Official result'));
+      const date = document.createElement('time'); date.textContent = game.created_at ? new Date(game.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+      meta.append(series,date);
+      const scoreline = document.createElement('div'); scoreline.className = 'official-scoreline';
+      const home = document.createElement('div'); home.className = 'official-side';
+      const homeName = document.createElement('strong'); homeName.textContent = safeText(game.home_team,'Home team');
+      const homeScore = document.createElement('span'); homeScore.textContent = fmt(game.home_score);
+      home.append(homeName,homeScore);
+      const final = document.createElement('div'); final.className = 'official-final'; final.textContent = 'FINAL';
+      const away = document.createElement('div'); away.className = 'official-side';
+      const awayName = document.createElement('strong'); awayName.textContent = safeText(game.away_team,'Away team');
+      const awayScore = document.createElement('span'); awayScore.textContent = fmt(game.away_score);
+      away.append(awayName,awayScore);
+      scoreline.append(home,final,away); card.append(meta,scoreline); fragment.appendChild(card);
+    }
+    target.replaceChildren(fragment);
+  }
+  async function refresh() {
+    $('official-status').textContent = 'Loading official VFA score reports and player totals…';
+    $('refresh-stats').disabled = true;
+    try {
+      const [players,games] = await Promise.all([
+        getRows('/vfa_official_player_totals?select=player_key,username,team_name,position,rating,passing_yards,rushing_yards,receiving_yards,total_yards,completions,passing_attempts,passing_tds,rushing_attempts,rushing_tds,receptions,targets,receiving_tds,drops,fumbles,sacks_taken,pass_breakups,forced_fumbles,fumble_recoveries,defensive_tds,field_goals_made,field_goals_attempted,extra_points_made,extra_points_attempted,touchdowns,interceptions,tackles,sacks,games_played,wins,losses,updated_at&order=rating.desc'),
+        getRows('/vfa_public_official_games?select=report_id,season,series,home_team,away_team,home_score,away_score,created_at&order=created_at.desc&limit=8')
+      ]);
+      state.players = Array.isArray(players) ? players : [];
+      state.games = Array.isArray(games) ? games : [];
+      renderPlayers(); renderGames();
+      $('official-status').textContent = 'Connected to official VFA data · Last refreshed ' + new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+      $('official-updated').textContent = 'Automatically refreshed every 30 seconds. Career totals accumulate across accepted official reports.';
+    } catch (error) {
+      $('official-status').textContent = 'Could not load official statistics: ' + (error instanceof Error ? error.message : 'Unknown error');
+      if (!state.players.length) setEmptyRows('Official stats could not be loaded. Please refresh in a moment.');
+      if (!state.games.length) {
+        const empty = document.createElement('div'); empty.className='official-empty';
+        empty.textContent='Official game results could not be loaded.';
+        $('official-games').replaceChildren(empty);
+      }
+    } finally {
+      $('refresh-stats').disabled = false;
+    }
+  }
+  $('player-search').addEventListener('input', renderPlayers);
+  $('position-filter').addEventListener('change', renderPlayers);
+  $('sort-by').addEventListener('change', renderPlayers);
+  $('refresh-stats').addEventListener('click', refresh);
+  refresh();
+  window.setInterval(refresh, 30000);
+})();
+</script></body></html>
