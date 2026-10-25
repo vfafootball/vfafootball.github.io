@@ -293,6 +293,41 @@ main.page .status{flex-shrink:0}
  main.page .player-gfx-head{justify-content:flex-start}
  main.page .stream-video-frame{min-height:180px}
 }
+
+/* Navigation and panel stability: neutral dark surfaces, restrained orange accents */
+header{isolation:isolate;overflow:visible;background:rgba(8,7,11,.97);border-bottom:1px solid #30283a}
+.header-inner{position:relative;z-index:51;min-height:72px;gap:18px}
+.brand{flex:0 0 auto;color:#f5f0f8}
+.brand span{color:#ffad55}
+.site-nav{flex:1;min-width:0;gap:6px;flex-wrap:nowrap}
+.nav-group{flex:0 0 auto}
+.nav-trigger{padding:9px 11px;border:1px solid #2b2533;border-radius:9px;background:#141119;color:#d2c8d9;white-space:nowrap;transition:background .16s,border-color .16s,color .16s}
+.nav-trigger:after{color:#d0a06e}
+.nav-trigger:hover,.nav-group.open>.nav-trigger,.nav-group:focus-within>.nav-trigger{background:#211927;border-color:#67482e;color:#fff4e7}
+.nav-menu{top:calc(100% + 7px);min-width:224px;border-color:#3b3044;background:#100d15;z-index:1000}
+.nav-menu a{color:#ded5e6}
+.nav-menu a:hover,.nav-menu a:focus-visible{background:#211927;color:#ffc27f}
+.nav-menu .menu-caption{color:#a59aaf}
+.nav-group.open .nav-menu{animation:nav-menu-in .12s ease-out}
+@keyframes nav-menu-in{from{opacity:.5;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+/* Keep the content stack predictable so cards never cover or vanish behind neighbors */
+main.page{position:relative;isolation:isolate;overflow:visible}
+main.page>section,main.page>.player-gfx-panel,main.page>.home-secondary-grid{position:relative;z-index:0;transform:none}
+main.page .home-card,main.page .award-odds-card,main.page .league-link-grid a{backface-visibility:visible;transform:none}
+main.page .home-card:hover{transform:translateY(-2px)}
+main.page .panel,main.page .baltimore-dynasty,main.page .odds-hub,main.page .player-gfx-panel{overflow:visible}
+main.page .stream-video-frame,main.page .vfa-chat,main.page .player-gfx-wrap{overflow:hidden}
+@media(max-width:1000px){
+ .header-inner{align-items:flex-start;flex-direction:column;gap:9px;padding:12px 0}
+ .site-nav{width:100%;justify-content:flex-start;flex-wrap:wrap}
+ .nav-menu{left:0;right:auto}
+}
+@media(max-width:620px){
+ .site-nav{gap:5px}
+ .nav-trigger{padding:8px 9px;font-size:11px}
+ .nav-menu{position:fixed;top:auto;left:12px;right:12px;max-height:min(65vh,420px);overflow:auto;min-width:0}
+ main.page>.stream-panel,main.page>.baltimore-dynasty,main.page>.odds-hub,main.page>.player-gfx-panel,main.page>.league-center-panel,main.page>.videos-home-panel{padding:16px}
+}
 </style>
 <link rel="stylesheet" href="/halloween-cleanup.css"></head><body>
 <header><div class="wrap header-inner"><a class="brand" href="index.html?v=20261010logos2">VFA FOOTBALL <span>/ SERIES 4</span></a><nav class="site-nav" aria-label="Main navigation">
