@@ -925,8 +925,8 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
     renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));renderer.setSize(field.clientWidth,field.clientHeight,false);
     renderer.setClearColor(0x000000,0);renderer.shadowMap.enabled=false;
     scene=new THREE.Scene();
-    camera=new THREE.OrthographicCamera(-20,20,10,-10,.1,100);
-    camera.position.set(0,40,0.01);camera.up.set(0,0,-1);camera.lookAt(0,0,0);
+    camera=new THREE.PerspectiveCamera(48,field.clientWidth/field.clientHeight,.1,160);
+    camera.position.set(0,29,24);camera.up.set(0,1,0);camera.lookAt(0,0,0);
     scene.add(new THREE.HemisphereLight(0xffffff,0x324434,2.0));
     const sun=new THREE.DirectionalLight(0xffffff,2.4);sun.position.set(-12,25,8);scene.add(sun);
     const fill=new THREE.DirectionalLight(0xa6caff,.65);fill.position.set(14,12,-12);scene.add(fill);
@@ -938,7 +938,7 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
     layer.style.left=field.offsetLeft+'px';layer.style.top=field.offsetTop+'px';
     layer.style.width=field.clientWidth+'px';layer.style.height=field.clientHeight+'px';
     renderer.setSize(field.clientWidth,field.clientHeight,false);
-    const aspect=field.clientWidth/field.clientHeight;camera.left=-10.1*aspect;camera.right=10.1*aspect;camera.top=10.1;camera.bottom=-10.1;camera.updateProjectionMatrix();
+    camera.aspect=field.clientWidth/field.clientHeight;camera.updateProjectionMatrix();
   }
   function getTeamColor(p){
     try{return p.kind==='rusher'||p.kind==='db'?jerseyColor(activeDefenseTeam(),'defense'):jerseyColor(activeOffenseTeam(),'offense')}catch(e){return '#17613b'}
