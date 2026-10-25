@@ -837,8 +837,7 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
 </script>
 
 <script>
-/* VFA 3D player renderer. Uses actual Three.js meshes, top-down perspective,
-   and mirrors the existing gameplay player coordinates without changing game rules. */
+/* VFA stadium renderer: 3D field, night stadium, skyline, player meshes and ball. */
 (function(){
   const field=document.getElementById('field');
   if(!field)return;
@@ -846,6 +845,7 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
   wrap.style.position='relative';
   let started=false, renderer, scene, camera, layer;
   const actors=new Map();
+  let ballMesh=null;
   const animationNames=['idle','run','throw','catch','block','tackle','jump','kick'];
   window.VFA3DPlayAction=function(action,targetKind,targetId){
     if(!started)return;
@@ -921,12 +921,47 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
     layer=document.createElement('canvas');layer.id='vfa3dPlayers';layer.setAttribute('aria-hidden','true');
     Object.assign(layer.style,{position:'absolute',left:field.offsetLeft+'px',top:field.offsetTop+'px',width:field.clientWidth+'px',height:field.clientHeight+'px',pointerEvents:'none',zIndex:'2',imageRendering:'auto'});
     wrap.appendChild(layer);
-    renderer=new THREE.WebGLRenderer({canvas:layer,alpha:true,antialias:true,powerPreference:'low-power'});
+    renderer=new THREE.WebGLRenderer({canvas:layer,alpha:false,antialias:true,powerPreference:'low-power'});
     renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));renderer.setSize(field.clientWidth,field.clientHeight,false);
-    renderer.setClearColor(0x000000,0);renderer.shadowMap.enabled=false;
+    renderer.setClearColor(0x070b20,1);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;field.style.opacity='0';
     scene=new THREE.Scene();
-    camera=new THREE.PerspectiveCamera(48,field.clientWidth/field.clientHeight,.1,160);
-    camera.position.set(0,29,24);camera.up.set(0,1,0);camera.lookAt(0,0,0);
+    scene.background=new THREE.Color(0x070b20);
+    scene.fog=new THREE.Fog(0x070b20,48,105);
+    camera=new THREE.PerspectiveCamera(47,field.clientWidth/field.clientHeight,.1,180);
+    camera.position.set(0,26,27);camera.up.set(0,1,0);camera.lookAt(0,0,-1.5);
+    // Deep green turf with painted lines, hashes, numbers and end zones.
+    const turfMat=new THREE.MeshStandardMaterial({color:0x075023,roughness:1});
+    const turf=new THREE.Mesh(new THREE.PlaneGeometry(39.5,20.2),turfMat);turf.rotation.x=-Math.PI/2;turf.position.y=-.08;turf.receiveShadow=true;scene.add(turf);
+    const stripeMat=new THREE.MeshBasicMaterial({color:0xcbd7d6});
+    const hashMat=new THREE.MeshBasicMaterial({color:0x9eb7a7});
+    const blueMat=new THREE.MeshBasicMaterial({color:0x1775e8});
+    function fieldLine(x,z,w,d,mat,y=-.055){const m=new THREE.Mesh(new THREE.PlaneGeometry(w,d),mat);m.rotation.x=-Math.PI/2;m.position.set(x,y,z);scene.add(m);return m}
+    // Sidelines and end lines
+    fieldLine(0,-10,39.5,.13,stripeMat);fieldLine(0,10,39.5,.13,stripeMat);
+    fieldLine(-19.65,0,.13,20.2,stripeMat);fieldLine(19.65,0,.13,20.2,stripeMat);
+    // Yard lines, hash marks, alternating mowing bands and blue line of scrimmage.
+    for(let z=-9;z<=9;z+=1.0){fieldLine(0,z,39.2,.045,hashMat,-.052);for(let x=-18.5;x<=18.5;x+=1.25){fieldLine(x,z,.16,.055,hashMat,-.049)}}
+    for(let z=-8;z<=8;z+=2){const band=new THREE.Mesh(new THREE.PlaneGeometry(39.2,1),new THREE.MeshBasicMaterial({color:Math.abs(z/2)%2?0x075525:0x06471f}));band.rotation.x=-Math.PI/2;band.position.set(0,-.07,z+.5);scene.add(band)}
+    // Repaint the lines above the mowing bands.
+    for(let z=-9;z<=9;z+=1.0){fieldLine(0,z,39.2,.035,stripeMat,-.045);for(let x=-18.5;x<=18.5;x+=1.25)fieldLine(x,z,.12,.045,hashMat,-.042)}
+    fieldLine(0,0,39.4,.10,stripeMat,-.038);fieldLine(-7,0,.10,20.1,stripeMat,-.036);fieldLine(7,0,.10,20.1,stripeMat,-.036);
+    fieldLine(0,1.2,39.4,.12,blueMat,-.03);
+    const endMat=new THREE.MeshBasicMaterial({color:0x082b20});
+    fieldLine(0,-9.65,39,.7,endMat,-.035);fieldLine(0,9.65,39,.7,endMat,-.035);
+    function textPlane(txt,x,z,size,color=0xe8eee7){const c=document.createElement('canvas');c.width=256;c.height=128;const q=c.getContext('2d');q.clearRect(0,0,256,128);q.fillStyle='#'+color.toString(16).padStart(6,'0');q.font='bold 72px monospace';q.textAlign='center';q.textBaseline='middle';q.fillText(txt,128,64);const t=new THREE.CanvasTexture(c);t.magFilter=THREE.NearestFilter;const m=new THREE.Mesh(new THREE.PlaneGeometry(size,size*.5),new THREE.MeshBasicMaterial({map:t,transparent:true,side:THREE.DoubleSide}));m.rotation.x=-Math.PI/2;m.position.set(x,-.025,z);scene.add(m)}
+    for(let z=-8;z<=8;z+=4){textPlane(String(50-Math.round(Math.abs(z)*5)), -15.5,z,.8);textPlane(String(50-Math.round(Math.abs(z)*5)),15.5,z,.8)}
+    // Stadium seating banks, dark rails and repeating crowd lights.
+    const standMat=new THREE.MeshStandardMaterial({color:0x111827,roughness:.9});
+    for(const side of [-1,1]){
+      const stand=new THREE.Mesh(new THREE.BoxGeometry(42,3.4,5.5),standMat);stand.position.set(0,1.5,side*13.1);scene.add(stand);
+      for(let row=0;row<7;row++)for(let n=0;n<125;n++){const x=-20+n*.32;const colors=[0xddd9c8,0x162e38,0x8b2532,0x315c49,0xc2a56a];const dot=new THREE.Mesh(new THREE.BoxGeometry(.10,.14,.10),new THREE.MeshBasicMaterial({color:colors[(n*7+row*13)%colors.length]}));dot.position.set(x,3.25+row*.27,side*(10.8+row*.42));scene.add(dot)}
+      const rail=new THREE.Mesh(new THREE.BoxGeometry(42,.12,.12),new THREE.MeshBasicMaterial({color:0x9ca3af}));rail.position.set(0,3.2,side*10.5);scene.add(rail);
+    }
+    // Distant pixel-lit city skyline beyond the end zone.
+    for(let i=0;i<34;i++){const x=-31+i*1.9,h=2.5+((i*17)%11)*.58,w=.8+((i*7)%5)*.17;const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,.9),new THREE.MeshStandardMaterial({color:[0x11182c,0x172039,0x20283b][i%3],roughness:1}));b.position.set(x,h/2-1,-22-(i%4)*.6);scene.add(b);for(let yy=0;yy<h-.5;yy+=.55)for(let xx=-w/2+.15;xx<w/2;xx+=.22){if((i+Math.round(yy*10)+Math.round(xx*10))%3){const win=new THREE.Mesh(new THREE.BoxGeometry(.07,.11,.025),new THREE.MeshBasicMaterial({color:(i+Math.round(yy*10))%2?0xf3d783:0x6c9bc4}));win.position.set(x+xx,yy,-21.48-(i%4)*.6);scene.add(win)}}}
+    // Stadium floodlights
+    for(const x of [-18,18])for(const z of [-8,8]){const pole=new THREE.Mesh(new THREE.CylinderGeometry(.07,.1,10,6),new THREE.MeshStandardMaterial({color:0x303b4c}));pole.position.set(x,5,z);scene.add(pole);const lamp=new THREE.PointLight(0xc6ddff,35,22);lamp.position.set(x,10,z);scene.add(lamp)}
+    // Live ball mesh follows the existing 2D gameplay ball.
     scene.add(new THREE.HemisphereLight(0xffffff,0x324434,2.0));
     const sun=new THREE.DirectionalLight(0xffffff,2.4);sun.position.set(-12,25,8);scene.add(sun);
     const fill=new THREE.DirectionalLight(0xa6caff,.65);fill.position.set(14,12,-12);scene.add(fill);
@@ -948,6 +983,8 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
     if(!started||!renderer||!scene)return;
     try{
       if(!window.players||!Array.isArray(players))return;
+      if(!ballMesh){ballMesh=new THREE.Mesh(new THREE.SphereGeometry(.18,10,8),new THREE.MeshStandardMaterial({color:0x8a4a22,roughness:.72}));ballMesh.scale.set(1.35,.8,.8);scene.add(ballMesh)}
+      if(typeof ball!=='undefined'&&ball&&Number.isFinite(ball.x)&&Number.isFinite(ball.y)){ballMesh.visible=true;ballMesh.position.set((ball.x/960-.5)*39.5,.26,(ball.y/500-.5)*20.2)}else ballMesh.visible=false;
       const alive=new Set();
       players.forEach((p,index)=>{
         const id=p.id!==undefined?p.kind+':'+p.id:p.kind+':'+index;alive.add(id);
