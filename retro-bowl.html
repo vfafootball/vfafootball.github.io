@@ -1044,7 +1044,7 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
     requestAnimationFrame(tick);
     if(!started||!renderer||!scene)return;
     try{
-      if(!window.players||!Array.isArray(players))return;
+      if(typeof players==='undefined'||!Array.isArray(players)){renderer.render(scene,camera);return;}
       if(!ballMesh){ballMesh=new THREE.Mesh(new THREE.SphereGeometry(.18,10,8),new THREE.MeshStandardMaterial({color:0x8a4a22,roughness:.72}));ballMesh.scale.set(1.35,.8,.8);scene.add(ballMesh)}
       if(typeof ball!=='undefined'&&ball&&Number.isFinite(ball.x)&&Number.isFinite(ball.y)){ballMesh.visible=true;ballMesh.position.set((ball.x/960-.5)*39.5,.26,(ball.y/500-.5)*20.2)}else ballMesh.visible=false;
       const alive=new Set();
