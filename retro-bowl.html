@@ -1063,9 +1063,9 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
  hud.addEventListener('click',skip);
  // Wrap play resolution so important results automatically enter replay mode.
  const wrap=(name,detect)=>{const original=window[name];if(typeof original!=='function'||original.__replayWrapped)return;const fn=function(...args){const before=(()=>{try{return JSON.stringify({yard:state?.game?.yard,td:state?.game?.touchdowns,ints:state?.game?.interceptions,turnovers:state?.game?.turnovers,completed:state?.game?.completed,passYards:state?.game?.passYards})}catch(e){return ''}})();const out=original.apply(this,args);try{const kind=detect(before,args);if(kind)replay(kind)}catch(e){}return out};fn.__replayWrapped=true;window[name]=fn};
- wrap('finishPass',before=>{try{const b=JSON.parse(before),g=state.game;if((g.interceptions||0)>b.ints)return 'INTERCEPTION';if((g.touchdowns||0)>b.td)return 'TOUCHDOWN';if((g.passYards||0)-b.passYards>=20)return 'BIG GAIN';if((g.completed||0)>b.completed)return null}catch(e){}return null});
- wrap('finishDiveRun',before=>{try{const b=JSON.parse(before),g=state.game;if((g.touchdowns||0)>b.td)return 'TOUCHDOWN';if((g.yard||0)-b.yard>=15)return 'BIG GAIN'}catch(e){}return null});
- wrap('finishCareerWRRun',before=>{try{const b=JSON.parse(before),g=state.game;if((g.touchdowns||0)>b.td)return 'TOUCHDOWN';if((g.passYards||0)-b.passYards>=20)return 'BIG GAIN'}catch(e){}return null});
+ wrap('finishPass',before=>{try{const b=JSON.parse(before),g=state.game;if((g.interceptions||0)>(Number(b.ints)||0))return 'INTERCEPTION';if((g.touchdowns||0)>(Number(b.td)||0))return 'TOUCHDOWN';if((g.passYards||0)-(Number(b.passYards)||0)>=20)return 'BIG GAIN';if((g.completed||0)>(Number(b.completed)||0))return null}catch(e){}return null});
+ wrap('finishDiveRun',before=>{try{const b=JSON.parse(before),g=state.game;if((g.touchdowns||0)>(Number(b.td)||0))return 'TOUCHDOWN';if((g.yard||0)-(Number(b.yard)||0)>=15)return 'BIG GAIN'}catch(e){}return null});
+ wrap('finishCareerWRRun',before=>{try{const b=JSON.parse(before),g=state.game;if((g.touchdowns||0)>(Number(b.td)||0))return 'TOUCHDOWN';if((g.passYards||0)-(Number(b.passYards)||0)>=20)return 'BIG GAIN'}catch(e){}return null});
 })();
 </script>
 </body></html>
