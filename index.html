@@ -209,6 +209,90 @@ th{background:#19152a!important;color:#ffb66f!important}
 td,th{border-color:#38234f!important}
 input,select,textarea{background:#0c0a13!important;color:#f8f4ff!important;border-color:#563078!important}
 .badge,.pill,.tag{border-color:#8050a7!important}
+
+/* HOME PAGE PANEL RESET — consistent spacing and a clear visual hierarchy */
+main.page{display:flex;flex-direction:column;gap:22px;padding-top:28px}
+main.page>.home-intro{margin:0 0 2px;padding:8px 0 22px}
+main.page>#liveMatchPanel{margin:0}
+main.page>.stream-panel,
+main.page>.baltimore-dynasty,
+main.page>.odds-hub,
+main.page>.player-gfx-panel,
+main.page>.league-center-panel,
+main.page>.home-secondary-grid,
+main.page>.videos-home-panel{margin:0!important;min-width:0}
+main.page>.stream-panel,
+main.page>.player-gfx-panel,
+main.page>.league-center-panel,
+main.page>.videos-home-panel,
+main.page>.baltimore-dynasty,
+main.page>.odds-hub{padding:clamp(17px,2.5vw,24px);border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,rgba(23,18,30,.98),rgba(12,10,16,.98));box-shadow:0 12px 30px rgba(0,0,0,.22)}
+main.page .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px}
+main.page .section-head>div{min-width:0}
+main.page .section-head h2,
+main.page .odds-heading h2,
+main.page .baltimore-dynasty h2{margin:3px 0 5px;font-size:clamp(19px,2.4vw,24px);line-height:1.25;letter-spacing:-.025em}
+main.page .section-head p,
+main.page .odds-heading p{margin:4px 0 0;max-width:650px;color:var(--muted);font-size:12px;line-height:1.55}
+main.page .home-secondary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+main.page .home-secondary-grid .home-card{min-width:0;min-height:158px;padding:17px;border-radius:13px;background:linear-gradient(145deg,#17131d,#0c0a10);border-color:var(--line)}
+main.page .home-secondary-grid .home-card h2{font-size:16px;margin:12px 0 6px}
+main.page .home-secondary-grid .home-card p{font-size:12px;line-height:1.55}
+main.page .home-secondary-grid .home-card .arrow{font-size:11px;margin-top:15px}
+main.page .league-link-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+main.page .league-link-grid a{min-height:76px;padding:14px;border-radius:12px;background:#100d16}
+main.page .league-link-grid small{line-height:1.4}
+main.page .baltimore-dynasty{position:relative;overflow:hidden}
+main.page .baltimore-dynasty-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+main.page .baltimore-dynasty p{font-size:13px;line-height:1.75;color:var(--muted)}
+main.page .baltimore-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+main.page .baltimore-stat{min-width:0;padding:14px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.18)}
+main.page .baltimore-stat small{display:block;line-height:1.4;color:var(--muted)}
+main.page .baltimore-stat strong{display:block;margin:7px 0 3px;font-size:25px;line-height:1.1}
+main.page .baltimore-stat span{font-size:11px;color:var(--gold)}
+main.page .odds-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+main.page .odds-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
+main.page .award-odds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+main.page .award-odds-card{min-width:0;padding:15px;border:1px solid var(--line-soft);border-radius:12px;background:rgba(0,0,0,.18)}
+main.page .award-player{display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:10px}
+main.page .award-player img{width:36px;height:36px;object-fit:contain}
+main.page .award-player h4{margin:0;font-size:14px}
+main.page .award-player span{font-size:11px;color:var(--muted)}
+main.page .odds-percent{font-size:20px;white-space:nowrap}
+main.page .odds-category-head{margin:0 0 12px}
+main.page .odds-category-head h3{margin:0 0 4px;font-size:15px}
+main.page .odds-category-head p{margin:0;color:var(--muted);font-size:12px}
+main.page .award-stats{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
+main.page .odds-disclaimer{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line-soft);font-size:11px;line-height:1.5;color:var(--muted)}
+main.page .player-gfx-panel .section-head{display:block}
+main.page .player-gfx-panel .section-head h2{margin:4px 0}
+main.page .player-gfx-panel .section-head p{margin:4px 0 0}
+main.page .player-gfx-head{justify-content:flex-start;margin:0 0 14px}
+main.page .player-gfx-wrap img{max-height:280px}
+main.page .stream-panel-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:16px;align-items:stretch}
+main.page .stream-video-frame{min-height:240px;border-radius:12px;overflow:hidden}
+main.page .vfa-chat{min-width:0;border-radius:12px;overflow:hidden}
+main.page .videos-home-panel .video-home-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+main.page .videos-home-panel .video-home-categories{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+main.page .videos-home-panel .video-home-categories span{padding:6px 10px;border:1px solid var(--line-soft);border-radius:999px;background:rgba(0,0,0,.2);font-size:11px;color:var(--muted)}
+main.page .status{flex-shrink:0}
+@media(max-width:950px){
+ main.page .home-secondary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ main.page .league-link-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ main.page .stream-panel-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ main.page{gap:16px;padding-top:20px}
+ main.page .home-secondary-grid,
+ main.page .league-link-grid,
+ main.page .baltimore-stat-grid,
+ main.page .award-odds-grid{grid-template-columns:1fr}
+ main.page .section-head,main.page .odds-heading{align-items:flex-start;flex-direction:column}
+ main.page .baltimore-dynasty-head{align-items:flex-start}
+ main.page .home-secondary-grid .home-card{min-height:135px}
+ main.page .player-gfx-head{justify-content:flex-start}
+ main.page .stream-video-frame{min-height:180px}
+}
 </style>
 <link rel="stylesheet" href="/halloween-cleanup.css"></head><body>
 <header><div class="wrap header-inner"><a class="brand" href="index.html?v=20261010logos2">VFA FOOTBALL <span>/ SERIES 4</span></a><nav class="site-nav" aria-label="Main navigation">
