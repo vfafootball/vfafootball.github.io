@@ -329,7 +329,43 @@ main.page .stream-video-frame,main.page .vfa-chat,main.page .player-gfx-wrap{ove
  main.page>.stream-panel,main.page>.baltimore-dynasty,main.page>.odds-hub,main.page>.player-gfx-panel,main.page>.league-center-panel,main.page>.videos-home-panel{padding:16px}
 }
 </style>
-<link rel="stylesheet" href="/halloween-cleanup.css"></head><body>
+<link rel="stylesheet" href="/halloween-cleanup.css">
+<style id="vfa-clear-navigation-override">
+/* Keep the top navigation clear/transparent: no orange filled panels. */
+.site-nav > a,
+.site-nav .nav-trigger,
+.site-nav .videos-nav-link,
+.site-nav button,
+.site-nav a.videos-nav-link {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  color: #e8e1d4 !important;
+}
+.site-nav > a:hover,
+.site-nav > a:focus-visible,
+.site-nav > a.active,
+.site-nav .nav-trigger:hover,
+.site-nav .nav-trigger:focus-visible,
+.site-nav .nav-group.open > .nav-trigger,
+.site-nav .nav-group:focus-within > .nav-trigger,
+.site-nav .videos-nav-link:hover,
+.site-nav .videos-nav-link[aria-expanded="true"] {
+  background: rgba(255,255,255,.045) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #fff !important;
+}
+/* Dropdowns remain readable, but are separate from the transparent top bar. */
+.site-nav .nav-menu {
+  background: #101010 !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+</style>
+
+</head><body>
 <header><div class="wrap header-inner"><a class="brand" href="index.html?v=20261010logos2">VFA FOOTBALL <span>/ SERIES 4</span></a><nav class="site-nav" aria-label="Main navigation">
 <a href="index.html?v=20261010logos2" data-page="index.html">Home</a>
 <div class="nav-group videos-dropdown"><button class="nav-trigger videos-nav-link" type="button" aria-expanded="false">Videos ▾</button><div class="nav-menu"><span class="menu-caption">VFA Clips</span><a href="videos.html?view=profile">Profile</a><a href="videos.html?view=videos">Videos</a><a href="videos.html?view=popular">Popular</a><a href="videos.html?view=reels">Reels</a></div></div>
