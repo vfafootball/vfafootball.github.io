@@ -385,6 +385,8 @@ function startPlayoffs(){if(state.week<8){say('<strong>Finish the regular season
 function simulatePlayoff(){const po=state.playoffs;if(!po?.started||po.champion)return;const alive=po.teams.filter(t=>t.alive);if(po.round===1){const winners=[];for(let i=0;i<alive.length;i+=2){const a=alive[i],b=alive[i+1];if(!a||!b)continue;const as=Math.round(rand(14,35)+(a.name===state.team?state.wins-4:0));const bs=Math.round(rand(14,35)+(b.name===state.team?state.wins-4:0));const winner=as>=bs?a:b;const loser=winner===a?b:a;loser.alive=false;po.results.push(`${a.name} ${as} — ${bs} ${b.name}`);winners.push(winner)}po.round=2;if(!winners.some(t=>t.name===state.team)&&state.wins>=4)say('<strong>Playoff loss.</strong> Your franchise was eliminated in the semifinals.');}else{const a=alive[0],b=alive[1];if(!a||!b){po.champion=alive[0]?.name||'VFA';}else{const as=Math.round(rand(17,36)+(a.name===state.team?state.wins-4:0));const bs=Math.round(rand(17,36)+(b.name===state.team?state.wins-4:0));po.champion=as>=bs?a.name:b.name;po.results.push(`Championship: ${a.name} ${as} — ${bs} ${b.name}`);po.teams.forEach(t=>t.alive=t.name===po.champion);po.round=3;}}if(po.round===2){const live=po.teams.filter(t=>t.alive);if(live.length>2){const chosen=live.slice(0,2);po.teams.forEach(t=>t.alive=chosen.includes(t));}}if(po.round===3&&!po.champion)po.champion=po.teams.find(t=>t.alive)?.name||state.team;save();renderAll();gameEvent(po.champion?'CHAMPIONSHIP COMPLETE':po.round===2?'SEMIFINALS COMPLETE':'POSTSEASON',po.champion?`${po.champion} are VFA Retro Bowl champions!`:'The next round is ready.');say(po.champion?`<strong>VFA Retro Bowl Champion:</strong> ${esc(po.champion)}.`:'<strong>Playoff results updated.</strong> Simulate the championship next.');}
 function openPlayCall(){if(state.game.over||running||ball)return;const ps=$('callPlaySelect'),ds=$('callDefenseSelect');ps.innerHTML=$('playSelect').innerHTML;ds.innerHTML=$('defenseSelect').innerHTML;if(gameMode==='single')$('defenseSelect').value='man';ps.value=$('playSelect').value;ds.value=$('defenseSelect').value;$('playCallModal').hidden=false;document.body.style.overflow='hidden'}function closePlayCall(){const modal=$('playCallModal');if(modal)modal.hidden=true;document.body.style.overflow=''}function confirmPlayCall(){const ps=$('callPlaySelect'),ds=$('callDefenseSelect');if(ps&&$('playSelect'))$('playSelect').value=ps.value;if(ds&&$('defenseSelect'))$('defenseSelect').value=ds.value;closePlayCall();startPlay()}function nextPlay(){if(state.game.over){$('gameAnalytics').hidden=true;if(state.week>=8){say('<strong>Season complete.</strong> Restart to chase the title again.');return}state.game=freshGame();$('fieldOverlay').innerHTML='<span>VFA • GAME DAY</span><strong>READY TO DRIVE</strong><small>Choose a play to start the next game</small>';renderAll();resetPlay();say(`<strong>Week ${state.week+1}.</strong> Next up: ${esc(currentOpponent())}.`);save();return}openPlayCall()}
 function pixelPlayer(x,y,color,label,kind){
+  if(window.VFA3DActive)return; // live 3D renderer draws the players
+
   /* Reference-matched pixel football sprite: blocky helmet, broad pads,
      exposed arms, numbered jersey, white football pants and cleats. */
   const active=running&&['qb','rb','wr','rusher','db'].includes(kind);
@@ -833,4 +835,134 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
   if(typeof state!=='undefined'){const credit=$('vfaInGameCredits');if(credit)credit.textContent=`${Number(state.credits)||0} CREDITS`;}
 })();
 </script>
+
+<script>
+/* VFA 3D player renderer. Uses actual Three.js meshes, top-down perspective,
+   and mirrors the existing gameplay player coordinates without changing game rules. */
+(function(){
+  const field=document.getElementById('field');
+  if(!field)return;
+  const wrap=field.parentElement;
+  wrap.style.position='relative';
+  let started=false, renderer, scene, camera, layer;
+  const actors=new Map();
+  const THREE_URL='https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js';
+  function loadThree(){return new Promise((resolve,reject)=>{
+    if(window.THREE){resolve();return}
+    const tag=document.createElement('script');tag.src=THREE_URL;tag.onload=resolve;tag.onerror=reject;document.head.appendChild(tag);
+  })}
+  function material(color,roughness=.78){return new THREE.MeshStandardMaterial({color,roughness,metalness:.02})}
+  function buildPlayer(p){
+    const root=new THREE.Group();
+    const uniform=material('#17613b'), uniformDark=material('#0c3020'), white=material('#f0eee4'), whiteShade=material('#bfc8c7'), skin=material('#b97b4c'), helmet=material('#f3f3eb'), black=material('#121820'), red=material('#d52b38'), facemask=material('#bac5c8'), shoe=material('#161b1e');
+    const box=(w,h,d,mat,x,y,z,group=root)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;group.add(m);return m};
+    const sphere=(rx,ry,rz,mat,x,y,z,group=root)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(1,10,7),mat);m.scale.set(rx,ry,rz);m.position.set(x,y,z);m.castShadow=true;group.add(m);return m};
+    // Pants, socks, articulated legs and cleats
+    const legs=[];
+    for(const side of [-1,1]){
+      const leg=new THREE.Group();leg.position.set(side*.23,.43,0);root.add(leg);legs.push(leg);
+      box(.22,.62,.24,white,0,-.20,0,leg);
+      box(.075,.48,.255,whiteShade,side*.065,-.19,-.01,leg);
+      box(.22,.15,.26,red,0,-.51,0,leg);
+      box(.29,.13,.38,shoe,0,-.64,-.035,leg);
+      box(.17,.035,.28,whiteShade,0,-.57,-.04,leg);
+    }
+    // Tapered torso and broad shoulder pads
+    box(.72,.72,.42,uniform,0,.95,0);
+    box(.78,.18,.46,uniformDark,0,1.24,0);
+    box(.36,.78,.46,uniformDark,-.39,.98,0);
+    box(.36,.78,.46,uniformDark,.39,.98,0);
+    box(.22,.18,.47,uniform,-.34,1.22,0);box(.22,.18,.47,uniform,.34,1.22,0);
+    // arms are pivoted so running has a visible stride
+    const arms=[];
+    for(const side of [-1,1]){
+      const arm=new THREE.Group();arm.position.set(side*.48,1.08,0);root.add(arm);arms.push(arm);
+      box(.22,.35,.28,uniform,side*.02,-.17,0,arm);
+      sphere(.12,.13,.13,skin,side*.04,-.39,0,arm);
+      box(.10,.12,.29,black,side*.04,-.32,0,arm);
+    }
+    // Neck and helmet
+    box(.22,.18,.22,skin,0,1.37,0);
+    sphere(.34,.32,.34,helmet,0,1.63,0);
+    sphere(.27,.19,.30,uniform,0,1.59,.11);
+    box(.42,.08,.10,black,0,1.52,.31);
+    // facemask bars across the face
+    box(.47,.045,.045,facemask,0,1.51,.36);
+    box(.045,.20,.045,facemask,-.16,1.58,.36);
+    box(.045,.20,.045,facemask,0,1.58,.38);
+    box(.045,.20,.045,facemask,.16,1.58,.36);
+    // jersey number plaque and stripe details
+    const numberMat=material('#fff8e8');
+    box(.27,.20,.025,numberMat,0,1.00,.225);
+    const numberCanvas=document.createElement('canvas');numberCanvas.width=128;numberCanvas.height=64;
+    const nctx=numberCanvas.getContext('2d');nctx.fillStyle='#fff8e8';nctx.font='bold 42px monospace';nctx.textAlign='center';nctx.textBaseline='middle';nctx.fillText(String(p.name||p.kind||'').slice(0,3),64,34);
+    const tex=new THREE.CanvasTexture(numberCanvas);tex.magFilter=THREE.NearestFilter;tex.minFilter=THREE.NearestFilter;
+    const numberMesh=new THREE.Mesh(new THREE.PlaneGeometry(.27,.14),new THREE.MeshBasicMaterial({map:tex,transparent:true,side:THREE.DoubleSide}));numberMesh.position.set(0,1.01,.245);root.add(numberMesh);
+    root.userData={legs,arms,uniform,uniformDark,helmet,numberCanvas,nctx,numberMesh,tex,ball: p.kind==='rb'&&p.hasBall};
+    root.scale.setScalar(1);
+    return root;
+  }
+  function colorize(actor,color){
+    const c=(color&&/^#[0-9a-f]{6}$/i.test(color))?color:'#17613b';
+    actor.userData.uniform.color.set(c);
+    actor.userData.uniformDark.color.set(c).multiplyScalar(.58);
+    actor.userData.helmet.color.set('#f2f2e9');
+  }
+  function init(){
+    if(started||!window.THREE)return;
+    started=true;window.VFA3DActive=true;
+    layer=document.createElement('canvas');layer.id='vfa3dPlayers';layer.setAttribute('aria-hidden','true');
+    Object.assign(layer.style,{position:'absolute',left:field.offsetLeft+'px',top:field.offsetTop+'px',width:field.clientWidth+'px',height:field.clientHeight+'px',pointerEvents:'none',zIndex:'2',imageRendering:'auto'});
+    wrap.appendChild(layer);
+    renderer=new THREE.WebGLRenderer({canvas:layer,alpha:true,antialias:true,powerPreference:'low-power'});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));renderer.setSize(field.clientWidth,field.clientHeight,false);
+    renderer.setClearColor(0x000000,0);renderer.shadowMap.enabled=false;
+    scene=new THREE.Scene();
+    camera=new THREE.PerspectiveCamera(42,field.clientWidth/field.clientHeight,.1,150);
+    camera.position.set(0,43,0.01);camera.up.set(0,0,-1);camera.lookAt(0,0,0);
+    scene.add(new THREE.HemisphereLight(0xffffff,0x324434,2.0));
+    const sun=new THREE.DirectionalLight(0xffffff,2.4);sun.position.set(-12,25,8);scene.add(sun);
+    const fill=new THREE.DirectionalLight(0xa6caff,.65);fill.position.set(14,12,-12);scene.add(fill);
+    const ground=new THREE.Mesh(new THREE.PlaneGeometry(96,50),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:0}));ground.rotation.x=-Math.PI/2;ground.position.y=-.04;scene.add(ground);
+    resize();window.addEventListener('resize',resize);requestAnimationFrame(tick);
+  }
+  function resize(){
+    if(!renderer||!field||!layer)return;
+    layer.style.left=field.offsetLeft+'px';layer.style.top=field.offsetTop+'px';
+    layer.style.width=field.clientWidth+'px';layer.style.height=field.clientHeight+'px';
+    renderer.setSize(field.clientWidth,field.clientHeight,false);
+    camera.aspect=field.clientWidth/field.clientHeight;camera.updateProjectionMatrix();
+  }
+  function getTeamColor(p){
+    try{return p.kind==='rusher'||p.kind==='db'?jerseyColor(activeDefenseTeam(),'defense'):jerseyColor(activeOffenseTeam(),'offense')}catch(e){return '#17613b'}
+  }
+  function tick(ts){
+    requestAnimationFrame(tick);
+    if(!started||!renderer||!scene)return;
+    try{
+      if(!window.players||!Array.isArray(players))return;
+      const alive=new Set();
+      players.forEach((p,index)=>{
+        const id=p.id!==undefined?p.kind+':'+p.id:p.kind+':'+index;alive.add(id);
+        let a=actors.get(id);
+        if(!a){a=buildPlayer(p);actors.set(id,a);scene.add(a)}
+        // Existing game coordinates (960x500) mapped to field plane.
+        a.position.set((p.x/960-.5)*39.5,.1,(p.y/500-.5)*20.2);
+        a.rotation.y=(p.kind==='rusher'||p.kind==='db')?Math.PI:0;
+        colorize(a,getTeamColor(p));
+        const phase=ts/150+(Number(p.id)||index)*.9;
+        a.userData.legs[0].rotation.x=Math.sin(phase)*.28*(running?1:.16);
+        a.userData.legs[1].rotation.x=-Math.sin(phase)*.28*(running?1:.16);
+        a.userData.arms[0].rotation.x=-Math.sin(phase)*.22*(running?1:.08);
+        a.userData.arms[1].rotation.x=Math.sin(phase)*.22*(running?1:.08);
+        a.scale.setScalar(p.kind==='ol'?1.02:1);
+      });
+      for(const [id,a] of actors){if(!alive.has(id)){scene.remove(a);actors.delete(id)}}
+      renderer.render(scene,camera);
+    }catch(e){console.warn('VFA 3D player renderer:',e)}
+  }
+  loadThree().then(()=>{if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init()}).catch(e=>console.error('Could not load Three.js; falling back to 2D players.',e));
+})();
+</script>
+
 </body></html>
