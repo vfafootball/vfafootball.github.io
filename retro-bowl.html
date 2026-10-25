@@ -198,6 +198,12 @@ html,body{background:#050813!important}
 #launchScreen.menu-open .online-lobby{max-height:35vh!important;overflow:auto!important;background:#080b19!important;border:2px solid #9b813a!important;padding:10px!important;margin-top:8px!important}
 #launchScreen.menu-open:after{content:'▲   ▼   ◀   ▶   CHOOSE   •   ENTER   SELECT';position:absolute;left:1%;bottom:2%;z-index:30;color:#fff8e8;background:#080b19;padding:9px 14px;border:2px solid #30384e;font:bold clamp(9px,1vw,13px) ui-monospace,monospace;letter-spacing:.06em;pointer-events:none}
 @media(max-width:700px){#launchScreen.menu-open #vfaSplash .vfa-splash-wordmark{top:12%!important;left:4%!important;width:80vw!important}#launchScreen.menu-open #vfaSplash .vfa-splash-retro{font-size:clamp(62px,16vw,105px)!important}#launchScreen.menu-open #vfaSplash .vfa-splash-bowl{font-size:clamp(27px,7vw,45px)!important}#launchScreen.menu-open .launch-card{left:7%!important;top:43%!important;width:86%!important;bottom:7%!important;max-height:49%!important}#launchScreen.menu-open .launch-option{min-height:48px!important;padding:6px 9px!important}#launchScreen.menu-open .launch-option .option-icon{font-size:19px!important}}
+</style><style id="vfa-start-reliability-fix">
+#launchScreen:not(.menu-open) #vfaSplash{z-index:20!important;pointer-events:auto!important}
+#launchScreen:not(.menu-open) #vfaSplashStart{position:absolute!important;z-index:40!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important}
+#launchScreen.menu-open #vfaSplash{pointer-events:none!important}
+#launchScreen.menu-open .launch-card{pointer-events:auto!important}
+#launchScreen.menu-open .launch-option{cursor:pointer!important;pointer-events:auto!important;touch-action:manipulation!important}
 </style></head><body>
 <div class="launch-screen" id="launchScreen" role="dialog" aria-modal="true" aria-labelledby="launchTitle"><div class="vfa-splash" id="vfaSplash" role="dialog" aria-label="VFA Retro Bowl title screen">
   <div class="vfa-splash-skyline" aria-hidden="true"></div>
@@ -554,9 +560,10 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
   $v('vfaMyCareerLaunchBtn')?.addEventListener('click',()=>{pendingCareerMode='single';$v('careerSetupIntro').hidden=false;$v('careerBuildPanel').hidden=true;$v('careerSetupModal').hidden=false;document.body.style.overflow='hidden';if(!careerPlayer())$v('careerPlayerName').focus();else $v('careerCustomPlayerSelect').focus()});
   $v('analyticsDoneBtn')?.addEventListener('click',()=>{$v('gameAnalytics').hidden=true;$v('fieldOverlay')?.classList.add('hidden');renderVFAHome();$v('vfaHomePanel')?.scrollIntoView({behavior:'smooth',block:'start'});save()});
   const vfaSplash=$v('vfaSplash'),vfaSplashStart=$v('vfaSplashStart');
-  const dismissVfaSplash=()=>{if(!vfaSplash)return;const launch=$v('launchScreen');if(launch){launch.classList.add('menu-open');launch.setAttribute('aria-label','Choose your VFA Retro Bowl game mode');}vfaSplash.classList.remove('hidden');vfaSplashStart?.blur();};
-  vfaSplashStart?.addEventListener('click',dismissVfaSplash);
-  window.addEventListener('keydown',e=>{if(vfaSplash&&!vfaSplash.classList.contains('hidden')&&!$v('launchScreen')?.classList.contains('menu-open')&&(e.key==='Enter'||e.code==='Space')){e.preventDefault();dismissVfaSplash()}},{capture:true});
+  const dismissVfaSplash=()=>{const splash=$v('vfaSplash'),launch=$v('launchScreen');if(!splash||!launch)return;launch.classList.add('menu-open');launch.setAttribute('aria-label','Choose your VFA Retro Bowl game mode');splash.classList.remove('hidden');splash.setAttribute('aria-hidden','true');splash.style.pointerEvents='none';launch.style.display='block';launch.style.visibility='visible';launch.style.opacity='1';vfaSplashStart?.blur();};
+  vfaSplashStart?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();dismissVfaSplash()});
+  document.addEventListener('click',e=>{const start=e.target?.closest?.('#vfaSplashStart');if(start){e.preventDefault();e.stopPropagation();dismissVfaSplash()}},true);
+  window.addEventListener('keydown',e=>{const launch=$v('launchScreen');if(vfaSplash&&launch&&!launch.classList.contains('menu-open')&&(e.key==='Enter'||e.code==='Space)){if(e.target?.closest?.('input,textarea,select,button'))return;e.preventDefault();dismissVfaSplash()}},{capture:true});
   vfaSplashStart?.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();dismissVfaSplash()}});
   document.querySelectorAll('.launch-option').forEach(b=>{if(b.id==='singlePlayerBtn')b.querySelector('small').textContent='Build your franchise, manage a 12-player roster, hire coaches, and play a full season.';if(b.id==='multiPlayerBtn')b.querySelector('small').textContent='Two players on the same keyboard: offense versus defense, with each side limited to its own controls.';if(b.id==='onlinePlayerBtn')b.querySelector('small').textContent='Create a global 1v1 matchup. Host and opponent control only their assigned offense or defense.'});
   // Keep game players legible and more football-like: helmet, arms, legs, jersey number, and cleats.
