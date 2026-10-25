@@ -1,0 +1,49 @@
+name: Publish VFA Halloween cleanup
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-halloween-cleanup.yml"
+permissions:
+  contents: write
+jobs:
+  apply-cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the live site
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Add cleanup stylesheet to site pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          changed = []
+          for page in Path(".").glob("*.html"):
+              text = page.read_text(encoding="utf-8")
+              if 'href="/halloween-cleanup.css"' in text:
+                  continue
+              link = '<link rel="stylesheet" href="/halloween-cleanup.css">'
+              if "</head>" in text:
+                  text = text.replace("</head>", link + "</head>", 1)
+              elif "</HEAD>" in text:
+                  text = text.replace("</HEAD>", link + "</HEAD>", 1)
+              else:
+                  continue
+              page.write_text(text, encoding="utf-8")
+              changed.append(page.name)
+          print("Updated pages:", ", ".join(changed) if changed else "none")
+          PY
+      - name: Commit and publish updated pages
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html'
+          if git diff --cached --quiet; then
+            echo "No page changes were needed."
+            exit 0
+          fi
+          git commit -m "Apply Halloween visual cleanup to League Hub pages"
+          git push origin HEAD:main
