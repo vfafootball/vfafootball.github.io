@@ -169,7 +169,31 @@ input,select,textarea{background:#0c0a13!important;color:#f8f4ff!important;borde
 .primetime-card{border-color:rgba(246,190,100,.85)!important;background:radial-gradient(ellipse at top,rgba(246,190,100,.13),transparent 65%),linear-gradient(145deg,#1b1710,#090909)!important;box-shadow:0 0 0 1px rgba(246,190,100,.12),0 14px 38px rgba(246,190,100,.08)!important}
 .primetime-card .round-label{color:#ffd98d!important}
 .primetime-status{background:linear-gradient(135deg,#f6be64,#e5a640)!important;border-color:#f6be64!important;color:#17110a!important}
-</style></head><body><header><div class="wrap header-inner"><a class="brand" href="index.html?v=20261015about1" aria-label="VFA League Hub"><img src="vfa-logo.png?v=20261010-playin3" alt="VFA logo" style="width:42px;height:42px;object-fit:contain"><span><strong>VFA</strong> <span>LEAGUE HUB</span></span></a><nav class="site-nav" aria-label="Main navigation">
+</style><style id="vfa-stable-panels-and-champions-bowl">
+/* Stable interactive panels: prevent global button styles from shifting card layouts. */
+#award-odds .odds-category[hidden]{display:none!important}
+#award-odds .odds-category{min-width:0;animation:none!important;transition:none!important}
+#award-odds .award-odds-grid,#award-odds .award-odds-card{min-width:0}
+#award-odds .odds-tab{transform:none!important;filter:none!important}
+#award-odds .odds-tab:hover{transform:none!important}
+.champions-bowl-feature{margin:0 0 22px;overflow:hidden;border:1px solid rgba(255,190,92,.34);border-radius:18px;background:#0b0910;box-shadow:0 16px 38px rgba(0,0,0,.24)}
+.champions-bowl-art{position:relative;isolation:isolate;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;overflow:hidden;padding:26px 18px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(255,183,75,.22),transparent 52%),linear-gradient(115deg,#0b0a10,#211426 52%,#100d10)}
+.champions-bowl-art:before,.champions-bowl-art:after{content:"";position:absolute;z-index:-1;pointer-events:none;border:1px solid rgba(255,190,92,.17);border-radius:50%;width:330px;height:330px;transform:rotate(-18deg) scaleY(.4)}
+.champions-bowl-art:after{width:450px;height:450px;border-color:rgba(174,111,255,.17);transform:rotate(20deg) scaleY(.35)}
+.champions-bowl-orbit{position:absolute;right:18px;top:12px;color:rgba(255,255,255,.045);font-size:clamp(62px,12vw,120px);font-weight:1000;letter-spacing:-.08em;line-height:1}
+.champions-bowl-kicker{color:#ffd28a;font-size:10px;font-weight:900;letter-spacing:.2em}
+.champions-bowl-art h2{margin:5px 0;font-size:clamp(29px,5vw,46px);line-height:1;font-weight:1000;letter-spacing:.04em;color:#fff8e9;text-shadow:0 3px 22px rgba(255,175,67,.18)}
+.champions-bowl-art h2 span{color:#ffc36b}
+.champions-bowl-art p{margin:5px 0 0;color:#c9bdd0;font-size:13px}
+.champions-bowl-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:13px 17px;border-top:1px solid rgba(255,190,92,.17);background:#100d13}
+.champions-bowl-footer strong,.champions-bowl-footer small{display:block}
+.champions-bowl-footer strong{font-size:12px;letter-spacing:.07em;color:#ffcf86}
+.champions-bowl-footer small{margin-top:3px;color:#bcb0c7;font-size:11px}
+.champions-bowl-footer a{flex:0 0 auto;padding:8px 12px;border:1px solid rgba(255,190,92,.28);border-radius:9px;color:#ffe2b0;font-size:11px;font-weight:850}
+.champions-bowl-footer a:hover{background:rgba(255,190,92,.08)}
+@media(max-width:600px){.champions-bowl-art{min-height:165px}.champions-bowl-footer{align-items:flex-start;flex-direction:column}}
+</style>
+</head><body><header><div class="wrap header-inner"><a class="brand" href="index.html?v=20261015about1" aria-label="VFA League Hub"><img src="vfa-logo.png?v=20261010-playin3" alt="VFA logo" style="width:42px;height:42px;object-fit:contain"><span><strong>VFA</strong> <span>LEAGUE HUB</span></span></a><nav class="site-nav" aria-label="Main navigation">
 <a href="index.html?v=20261015about1" data-page="index.html">Home</a>
 <div class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false">League</button><div class="nav-menu"><span class="menu-caption">League center</span><a href="standings.html?v=20261015about1">Standings</a><a href="conferences.html?v=20261015about1">Conferences</a><a href="teams.html?v=20261015about1">Teams</a><a href="matchups.html?v=20261015about1">Matchups</a><a href="playoffs.html?v=20261015about1">Playoffs</a><a href="stats.html?v=20261015about1">Player Statistics</a></div></div>
 <div class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false">Directory</button><div class="nav-menu"><span class="menu-caption">Quick access</span><a href="verification.html?v=20261015about1">Verification</a><a href="rulebook.html?v=20261015about1">Rulebook</a><a href="search.html?v=20261015about1">Search the site</a><a href="about.html?v=20261015about1">About VFA</a></div></div><div class="nav-group"><button class="nav-trigger" type="button" aria-expanded="false">Archive</button><div class="nav-menu"><span class="menu-caption">League archive</span><a href="history.html?v=20261015about1">History</a><a href="previous-streams.html?v=20261015about1">Previous Streams</a></div></div>
@@ -195,5 +219,13 @@ input,select,textarea{background:#0c0a13!important;color:#f8f4ff!important;borde
 <div class="teams"><div class="team playoff-team"><img src="https://cdn.discordapp.com/emojis/1547278734921564311.webp?size=240" alt="Washington team logo" title="Washington team logo" loading="lazy" decoding="async" referrerpolicy="no-referrer"><strong>Washington</strong></div><div class="versus"><span>VS</span><small>PLAYOFFS</small></div><div class="team playoff-team"><img src="https://cdn.discordapp.com/emojis/1544117816935059478.webp?size=240" alt="Jacksonville team logo" title="Jacksonville team logo" loading="lazy" decoding="async" referrerpolicy="no-referrer"><strong>Jacksonville</strong></div></div>
 <div class="card-foot"><span>VFA POSTSEASON</span><span>GAME 04</span></div></article>
 </div></section>
+<section class="champions-bowl-feature playoff-champions-bowl" aria-labelledby="playoff-champions-title">
+  <div class="champions-bowl-art">
+    <span class="champions-bowl-kicker">VFA FOOTBALL • SEASON 5</span>
+    <h2 id="playoff-champions-title">CHAMPIONS <span>BOWL</span></h2>
+    <p>The destination for the Season 5 playoff bracket.</p>
+  </div>
+  <div class="champions-bowl-footer"><span><strong>THE ROAD TO THE TITLE</strong><small>Matchups are listed above. Championship details will be added when confirmed.</small></span><a href="history.html">League History <span aria-hidden="true">↗</span></a></div>
+</section>
 <aside class="format-note halloween-note"><div class="note-icon">✦</div><div><h3>Primetime spotlight</h3><p>Los Angeles vs Chicago is the featured primetime matchup. All other playoff pairings were randomized from the eight confirmed qualifiers.</p></div></aside>
 </main><footer><div class="wrap footer-inner"><span>VFA Football • Official League Hub</span><span>Postseason Central • Play-in Round</span></div></footer><script>(()=>{document.querySelectorAll('.nav-trigger').forEach(b=>b.addEventListener('click',e=>{const g=b.closest('.nav-group');const open=!g.classList.contains('open');document.querySelectorAll('.nav-group').forEach(x=>{x.classList.remove('open');x.querySelector('.nav-trigger')?.setAttribute('aria-expanded','false')});if(open){g.classList.add('open');b.setAttribute('aria-expanded','true')}e.stopPropagation()}));document.addEventListener('click',()=>document.querySelectorAll('.nav-group').forEach(g=>{g.classList.remove('open');g.querySelector('.nav-trigger')?.setAttribute('aria-expanded','false')}));document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.nav-group').forEach(g=>{g.classList.remove('open');g.querySelector('.nav-trigger')?.setAttribute('aria-expanded','false')})});const input=document.getElementById('playoffSearch');const cards=[...document.querySelectorAll('.playoff-card')];const count=document.getElementById('playoffSearchCount');function filter(){const q=input.value.trim().toLowerCase();let visible=0;cards.forEach(c=>{const hay=(c.dataset.teams+' '+c.dataset.game+' '+c.innerText).toLowerCase();const show=!q||hay.includes(q);c.style.display=show?'':'none';if(show)visible++});count.textContent=q?`${visible} found`:`${cards.length} games`}input.addEventListener('input',filter)})();</script></body></html>
