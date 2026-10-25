@@ -145,6 +145,34 @@ html,body{background:#050813!important}
 .vfa-splash-footer span{color:#ffcf48;padding:0 .8em}
 @media(max-width:650px){.vfa-splash-wordmark{top:20%;left:2%;right:2%}.vfa-splash-retro{font-size:clamp(80px,24vw,160px)}.vfa-splash-bowl{font-size:clamp(31px,9vw,58px);border-width:4px}.vfa-splash-scoreboard{left:20%;width:60%;top:2%}.vfa-splash-player{bottom:27%}.vfa-splash-start{width:76vw;bottom:9%}.vfa-splash-footer{letter-spacing:0}.vfa-splash-midlogo{font-size:22vw}}
 @media(max-height:520px){.vfa-splash-wordmark{top:7%}.vfa-splash-retro{font-size:clamp(65px,15vh,140px)}.vfa-splash-bowl{font-size:clamp(30px,6vh,60px)}.vfa-splash-start{bottom:7%;padding:7px}.vfa-splash-footer{font-size:8px}}
+
+/* VFA pixel-art title/menu polish: preserve the full stadium scene and all existing modes. */
+.launch-screen.menu-open{padding:0;background:#050718;align-items:stretch;justify-content:stretch}
+.launch-screen.menu-open .vfa-splash{display:block!important}
+.launch-screen.menu-open .vfa-splash-wordmark{left:4.5%;right:auto;top:12%;width:min(44vw,650px);text-align:left;transform:none;pointer-events:none}
+.launch-screen.menu-open .vfa-splash-retro{font-size:clamp(74px,10vw,154px);line-height:.78;text-shadow:5px 6px #a43b20,9px 10px #32141c,-2px -2px #fff0a3;color:#ffd75d;letter-spacing:-.08em}
+.launch-screen.menu-open .vfa-splash-bowl{font-size:clamp(32px,4.4vw,66px);padding:4px 14px;color:#f5f4f0;background:#293b78;border:7px solid #cf3344;box-shadow:0 7px #6c1b2b;transform:skew(-9deg);letter-spacing:-.04em}
+.launch-screen.menu-open .vfa-splash-start,.launch-screen.menu-open .vfa-splash-footer{display:none!important}
+.launch-screen.menu-open .vfa-splash-scoreboard{left:4%;top:auto;bottom:58%;width:32%;height:5%;border:0;box-shadow:none;background:transparent;transform:none;flex-direction:row;justify-content:flex-start;opacity:1}
+.launch-screen.menu-open .vfa-splash-scoreboard span:first-child{display:none}
+.launch-screen.menu-open .vfa-splash-scoreboard span:nth-child(2){font-size:clamp(8px,1vw,13px);color:#f5f2e8}
+.launch-screen.menu-open .vfa-splash-scoreboard small{color:#f5f2e8}
+.launch-screen.menu-open .launch-card{display:block!important;position:absolute;left:6.3%;top:42%;bottom:5%;width:min(370px,37vw);max-height:53%;overflow:auto;padding:0 0 8px;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left;scrollbar-width:thin;z-index:25}
+.launch-screen.menu-open .launch-card:before{display:none}
+.launch-screen.menu-open .launch-brand,.launch-screen.menu-open .launch-logo,.launch-screen.menu-open .launch-title,.launch-screen.menu-open .launch-sub,.launch-screen.menu-open .launch-footer,.launch-screen.menu-open .launch-card>div[style*="text-align:left"]{display:none!important}
+.launch-screen.menu-open .launch-difficulty,.launch-screen.menu-open .launch-team-pick{display:none!important}
+.launch-screen.menu-open .launch-options{display:flex;flex-direction:column;gap:7px;margin:0}
+.launch-screen.menu-open .launch-option{position:relative;min-height:60px;display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;column-gap:9px;align-items:center;padding:9px 12px;border:3px solid #101522;border-radius:0;background:rgba(19,25,48,.94);box-shadow:3px 3px #03050b;color:#f8f5e8;transition:none}
+.launch-screen.menu-open .launch-option:before{content:'▶';position:absolute;left:-23px;color:#ffd34f;font-size:20px;opacity:0}
+.launch-screen.menu-open .launch-option:first-child:before{opacity:1}
+.launch-screen.menu-open .launch-option:hover,.launch-screen.menu-open .launch-option:focus-visible{transform:none;border-color:#ffcf48;background:#505f8b;outline:2px solid #ffcf48;outline-offset:1px}
+.launch-screen.menu-open .launch-option .option-icon{grid-row:1/3;grid-column:1;font-size:25px;text-align:center}
+.launch-screen.menu-open .launch-option strong{grid-column:2;font-size:clamp(14px,1.45vw,22px);line-height:1.1;letter-spacing:.06em;text-transform:uppercase}
+.launch-screen.menu-open .launch-option small{grid-column:2;color:#d5d8e6;font-size:clamp(9px,.82vw,12px);line-height:1.2}
+.launch-screen.menu-open #onlinePlayerBtn{grid-column:auto!important}
+.launch-screen.menu-open .online-lobby{max-height:35vh;overflow:auto;background:#080b19;border:2px solid #9b813a;padding:10px;margin-top:8px}
+.launch-screen.menu-open:after{content:'▲   ▼   ◀   ▶   CHOOSE   •   ENTER   SELECT';position:absolute;left:1%;bottom:2%;z-index:30;color:#fff8e8;background:#080b19;padding:9px 14px;border:2px solid #30384e;font:bold clamp(9px,1vw,13px) ui-monospace,monospace;letter-spacing:.06em;pointer-events:none}
+@media(max-width:700px){.launch-screen.menu-open .vfa-splash-wordmark{top:12%;left:4%;width:80vw}.launch-screen.menu-open .vfa-splash-retro{font-size:clamp(62px,16vw,105px)}.launch-screen.menu-open .vfa-splash-bowl{font-size:clamp(27px,7vw,45px)}.launch-screen.menu-open .launch-card{left:7%;top:43%;width:86%;bottom:7%;max-height:49%}.launch-screen.menu-open .launch-option{min-height:48px;padding:6px 9px}.launch-screen.menu-open .launch-option .option-icon{font-size:19px}}
 </style>
 </head><body>
 <div class="launch-screen" id="launchScreen" role="dialog" aria-modal="true" aria-labelledby="launchTitle"><div class="vfa-splash" id="vfaSplash" role="dialog" aria-label="VFA Retro Bowl title screen">
@@ -502,8 +530,9 @@ if(new URLSearchParams(location.hash.slice(1)).get('room')){setTimeout(()=>{cons
   $v('vfaMyCareerLaunchBtn')?.addEventListener('click',()=>{pendingCareerMode='single';$v('careerSetupIntro').hidden=false;$v('careerBuildPanel').hidden=true;$v('careerSetupModal').hidden=false;document.body.style.overflow='hidden';if(!careerPlayer())$v('careerPlayerName').focus();else $v('careerCustomPlayerSelect').focus()});
   $v('analyticsDoneBtn')?.addEventListener('click',()=>{$v('gameAnalytics').hidden=true;$v('fieldOverlay')?.classList.add('hidden');renderVFAHome();$v('vfaHomePanel')?.scrollIntoView({behavior:'smooth',block:'start'});save()});
   const vfaSplash=$v('vfaSplash'),vfaSplashStart=$v('vfaSplashStart');
-  const dismissVfaSplash=()=>{if(!vfaSplash)return;vfaSplash.classList.add('hidden');const launch=$v('launchScreen');if(launch)launch.setAttribute('aria-label','Choose your VFA Retro Bowl game mode');};
+  const dismissVfaSplash=()=>{if(!vfaSplash)return;const launch=$v('launchScreen');if(launch){launch.classList.add('menu-open');launch.setAttribute('aria-label','Choose your VFA Retro Bowl game mode');}vfaSplash.classList.remove('hidden');};
   vfaSplashStart?.addEventListener('click',dismissVfaSplash);
+  window.addEventListener('keydown',e=>{if(vfaSplash&&!vfaSplash.classList.contains('hidden')&&!$v('launchScreen')?.classList.contains('menu-open')&&(e.key==='Enter'||e.code==='Space')){e.preventDefault();dismissVfaSplash()}},{capture:true});
   vfaSplashStart?.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();dismissVfaSplash()}});
   document.querySelectorAll('.launch-option').forEach(b=>{if(b.id==='singlePlayerBtn')b.querySelector('small').textContent='Build your franchise, manage a 12-player roster, hire coaches, and play a full season.';if(b.id==='multiPlayerBtn')b.querySelector('small').textContent='Two players on the same keyboard: offense versus defense, with each side limited to its own controls.';if(b.id==='onlinePlayerBtn')b.querySelector('small').textContent='Create a global 1v1 matchup. Host and opponent control only their assigned offense or defense.'});
   // Keep game players legible and more football-like: helmet, arms, legs, jersey number, and cleats.
