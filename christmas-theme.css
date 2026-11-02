@@ -1,0 +1,41 @@
+/* VFA League Hub — Christmas 2026 theme */
+:root{
+ color-scheme:dark;
+ --bg:#050b09!important;--surface:#0d1712!important;--surface-2:#14231a!important;--surface-3:#1b3022!important;
+ --line:rgba(220,65,65,.34)!important;--line-soft:rgba(226,238,224,.13)!important;
+ --blue:#d92f3a!important;--blue-2:#ff6670!important;--gold:#e7c477!important;--gold-soft:#f5dfa4!important;
+ --text:#f7f5ee!important;--muted:#b9c8bc!important;--panel:#0d1712!important;--panel-2:#14231a!important;
+}
+html{background:#050b09!important;color-scheme:dark;scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 50% -18%,rgba(28,110,63,.24),transparent 48%),radial-gradient(ellipse at 100% 0%,rgba(180,32,48,.13),transparent 35%),#050b09!important;color:var(--text)!important}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.15;background-image:radial-gradient(circle at 12% 17%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 76% 29%,#dcefe3 0 1px,transparent 1.8px),radial-gradient(circle at 41% 68%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 88% 82%,#dcefe3 0 1px,transparent 1.8px);background-size:190px 190px,230px 230px,270px 270px,310px 310px}
+body>*{position:relative;z-index:1}
+header,.site-header,.header{background:rgba(4,12,8,.96)!important;border-color:rgba(220,65,65,.38)!important;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.brand span,.eyebrow,.kicker,.hero-kicker,.back,.arrow,.text-btn,.home-card .arrow{color:var(--gold)!important}
+.panel,.home-card,.player-gfx-panel,.game-card,.hero-card,.card,.team-card,.stat-card,.table-wrap,.content-card,.feature-card,.info-card,.bracket-card,.match-card,.history-card,.video-card,.rule-card,.conference-card,.search-panel,.standings-card,.playin-card,.playoff-card,.champions-bowl-feature,.live-match-panel,.directory-card,.league-link-grid a{background:linear-gradient(145deg,rgba(19,39,27,.96),rgba(8,19,13,.98))!important;border-color:var(--line-soft)!important}
+.home-card:hover,.team-card:hover,.card:hover,.directory-card:hover,.league-link-grid a:hover{background:linear-gradient(145deg,#1b3a28,#102219)!important;border-color:rgba(231,196,119,.65)!important}
+button,.primary-btn,.discord-btn,.btn-primary,.vote-btn,.search-btn,.nav-trigger{border-color:rgba(231,196,119,.35)!important}
+button:not(.nav-trigger),.primary-btn,.discord-btn,.btn-primary,.vote-btn,.search-btn{background:linear-gradient(135deg,#a91f30,#d63742)!important;color:#fff8ec!important}
+.secondary-btn,.btn-secondary{background:#142b1e!important;border-color:rgba(231,196,119,.45)!important;color:#f5dfa4!important}
+nav a:hover,nav a.active,.nav-trigger:hover,.nav-trigger[aria-expanded=true]{background:rgba(28,110,63,.22)!important;border-color:rgba(231,196,119,.3)!important;color:#fff!important}
+.nav-menu{background:#0b1710!important;border-color:rgba(231,196,119,.34)!important}
+.nav-menu a:hover{background:rgba(190,43,56,.18)!important;color:#fff!important}
+footer,.quick-stats,.section.alt{background-color:#07110b!important;border-color:var(--line-soft)!important}
+th{background:#14271b!important;color:#f5dfa4!important}
+td,th{border-color:var(--line-soft)!important}
+input,select,textarea{background:#09140d!important;color:#f7f5ee!important;border-color:rgba(231,196,119,.3)!important}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e7c477!important;outline-offset:3px}
+.christmas-kicker{color:#e7c477!important;letter-spacing:.17em;font-weight:900}
+.christmas-lights{height:8px;margin:0 auto 15px;max-width:760px;border-radius:99px;background:repeating-linear-gradient(90deg,transparent 0 22px,#d92f3a 22px 27px,transparent 27px 46px,#24834a 46px 51px,transparent 51px 70px);filter:drop-shadow(0 0 7px rgba(231,196,119,.4))}
+.christmas-note{border-color:rgba(231,196,119,.35)!important;background:linear-gradient(100deg,#0d1d13,#17251a,#0d1d13)!important}
+.playoff-card .round-label,.round-label{color:#e7c477!important}
+.christmas-final-four{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.christmas-final-four .playin-card{min-height:210px;border:1px solid rgba(231,196,119,.3)!important;border-radius:16px;padding:20px}
+.christmas-final-four .teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:22px 0}
+.christmas-final-four .team{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.christmas-final-four .team img{width:76px;height:76px;object-fit:contain}
+.christmas-final-four .team strong{font-size:17px}
+.christmas-final-four .versus{text-align:center;color:#e7c477;font-weight:950;letter-spacing:.14em}
+.christmas-final-four .versus small{display:block;margin-top:5px;color:#b9c8bc;font-size:9px}
+@media(max-width:650px){.christmas-final-four{grid-template-columns:1fr}.christmas-final-four .playin-card{min-height:0}.christmas-final-four .team img{width:62px;height:62px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
