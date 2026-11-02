@@ -43,7 +43,7 @@ footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-s
 .empty-state{padding:26px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);background:rgba(255,255,255,.015)}
 @media(max-width:900px){.team-grid{grid-template-columns:repeat(3,1fr)}.home-grid{grid-template-columns:repeat(2,1fr)}.home-card.home-feature{grid-column:span 2}.matchup-list{grid-template-columns:1fr}}
 
-/* Subtle Halloween theme */
+/* Subtle christmas theme */
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 8% 18%,rgba(113,42,153,.09),transparent 22%),radial-gradient(circle at 92% 82%,rgba(255,104,24,.07),transparent 24%)}
 .panel,.home-card,.player-gfx-panel,.team-button,.conference-card,.matchup-card,.featured,.qb-stat,.about-card,.rule-card,.empty-state{position:relative;overflow:hidden}
 .panel::after,.home-card::after,.player-gfx-panel::after,.team-button::after,.conference-card::after,.matchup-card::after,.featured::after,.about-card::after,.rule-card::after{content:"";position:absolute;top:0;right:0;width:54px;height:54px;pointer-events:none;opacity:.28;background:radial-gradient(circle at 78% 20%,rgba(255,107,31,.9) 0 3px,transparent 4px),radial-gradient(circle at 64% 32%,rgba(255,107,31,.45) 0 2px,transparent 3px),linear-gradient(135deg,transparent 67%,rgba(255,107,31,.18) 68%,transparent 70%)}
@@ -54,23 +54,23 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 .status{border-color:rgba(255,107,31,.28)}
 @media(max-width:700px){.wrap{width:min(100% - 24px,1160px)}.header-inner{padding:11px 0;align-items:flex-start;flex-direction:column}nav{justify-content:flex-start}.team-grid,.conference-grid,.rulebook-grid,.home-grid,.about-grid{grid-template-columns:1fr}.home-card.home-feature{grid-column:span 1}.home-feature img{height:140px}.page-head{align-items:flex-start;flex-direction:column}.matchup-row{grid-template-columns:1fr}.vs{padding:2px 0}.qb-grid{grid-template-columns:1fr}}
 
-/* VFA Halloween 2026 — cohesive, restrained seasonal layer */
-:root{--halloween-orange:#ff7a32;--halloween-purple:#7c4d9e;--halloween-glow:rgba(255,122,50,.16)}
+/* VFA christmas 2026 — cohesive, restrained seasonal layer */
+:root{--christmas-orange:#ff7a32;--christmas-purple:#7c4d9e;--christmas-glow:rgba(255,122,50,.16)}
 header{position:sticky;overflow:hidden}
-header::before{content:"";position:absolute;left:0;top:0;width:130px;height:2px;background:linear-gradient(90deg,transparent,var(--halloween-orange),transparent);opacity:.7}
+header::before{content:"";position:absolute;left:0;top:0;width:130px;height:2px;background:linear-gradient(90deg,transparent,var(--christmas-orange),transparent);opacity:.7}
 header::after{content:"✦  OCT 4–8  ✦";position:absolute;right:18px;top:2px;color:rgba(255,122,50,.42);font-size:7px;letter-spacing:.16em;font-weight:900;pointer-events:none}
 .season-banner{margin:0 0 18px;border:1px solid rgba(255,122,50,.24);border-radius:11px;background:linear-gradient(90deg,rgba(124,77,158,.12),rgba(255,122,50,.08),rgba(124,77,158,.12));box-shadow:0 8px 24px rgba(0,0,0,.16);padding:9px 13px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:11px;font-weight:800;letter-spacing:.03em;position:relative;overflow:hidden}
 .season-banner::before{content:"🕸";position:absolute;left:9px;top:-4px;font-size:18px;opacity:.22;transform:rotate(-12deg)}
 .season-banner::after{content:"🎃";position:absolute;right:9px;top:-3px;font-size:17px;opacity:.22}
 .season-banner strong{color:#ff9a63;letter-spacing:.08em}
-.halloween-corner{position:relative}
-.halloween-corner::before{content:"";position:absolute;right:10px;bottom:8px;width:22px;height:22px;border-right:1px solid rgba(124,77,158,.3);border-bottom:1px solid rgba(124,77,158,.3);border-radius:0 0 12px 0;pointer-events:none}
+.christmas-corner{position:relative}
+.christmas-corner::before{content:"";position:absolute;right:10px;bottom:8px;width:22px;height:22px;border-right:1px solid rgba(124,77,158,.3);border-bottom:1px solid rgba(124,77,158,.3);border-radius:0 0 12px 0;pointer-events:none}
 .panel::before,.featured::before,.qb-stat::before,.team-button::before,.player-gfx-panel::before,.empty-state::before{content:"";position:absolute;left:-10px;bottom:-10px;width:30px;height:30px;border-left:1px solid rgba(124,77,158,.28);border-bottom:1px solid rgba(124,77,158,.28);border-radius:0 14px 0 0;pointer-events:none}
-.panel::after,.featured::after,.qb-stat::after,.team-button::after,.player-gfx-panel::after,.empty-state::after{content:"";position:absolute;right:9px;top:8px;width:34px;height:22px;pointer-events:none;opacity:.18;background:radial-gradient(circle at 20% 50%,var(--halloween-orange) 0 2px,transparent 3px),radial-gradient(circle at 70% 28%,var(--halloween-purple) 0 2px,transparent 3px),linear-gradient(145deg,transparent 47%,rgba(255,122,50,.55) 48%,transparent 51%)}
+.panel::after,.featured::after,.qb-stat::after,.team-button::after,.player-gfx-panel::after,.empty-state::after{content:"";position:absolute;right:9px;top:8px;width:34px;height:22px;pointer-events:none;opacity:.18;background:radial-gradient(circle at 20% 50%,var(--christmas-orange) 0 2px,transparent 3px),radial-gradient(circle at 70% 28%,var(--christmas-purple) 0 2px,transparent 3px),linear-gradient(145deg,transparent 47%,rgba(255,122,50,.55) 48%,transparent 51%)}
 .home-intro{position:relative}
 .home-intro::after{content:"☾  ·  🦇  ·  ☾";display:block;margin-top:9px;color:rgba(124,77,158,.46);font-size:10px;letter-spacing:.16em}
 footer{position:relative;overflow:hidden}
-footer::after{content:"✦  SPOOKY SEASON  ✦";position:absolute;right:24px;bottom:4px;color:rgba(255,122,50,.22);font-size:7px;letter-spacing:.14em;font-weight:900;pointer-events:none}
+footer::after{content:"✦  Merry Christmas  ✦";position:absolute;right:24px;bottom:4px;color:rgba(255,122,50,.22);font-size:7px;letter-spacing:.14em;font-weight:900;pointer-events:none}
 
 
 /* VFA League Hub — black and gold theme; remove old seasonal styling */
@@ -78,7 +78,7 @@ footer::after{content:"✦  SPOOKY SEASON  ✦";position:absolute;right:24px;bot
  --bg:#000000;--surface:#101010;--surface-2:#171717;--surface-3:#222222;
  --line:#49391d;--line-soft:#302719;--blue:#d4a84f;--blue-2:#f6be64;
  --text:#f5f5f5;--muted:#b7b2a8;--shadow:0 12px 30px rgba(0,0,0,.35);--radius:14px;
- --halloween-orange:#f6be64;--halloween-purple:#f6be64;--halloween-glow:rgba(246,190,100,.12)
+ --christmas-orange:#f6be64;--christmas-purple:#f6be64;--christmas-glow:rgba(246,190,100,.12)
 }
 body::before{display:none!important}
 header::before,header::after,footer::after,.home-intro::after,.season-banner,
@@ -88,8 +88,8 @@ nav a:hover{background:#211b10;color:#f6be64}
 .stats-embed-panel{padding:10px;background:#050505;border-color:#49391d}
 @media(max-width:700px){.stats-embed-panel{padding:4px}.stats-embed-panel iframe{height:1250px!important}}
 
-</style><style id="vfa-halloween-theme">:root{--bg:#050408!important;--surface:#11101b!important;--surface-2:#19152a!important;--surface-3:#241b39!important;--line:#563078!important;--line-soft:#38234f!important;--blue:#ff7918!important;--blue-2:#ff9b35!important;--gold:#ff7918!important;--gold-soft:#ffd0a1!important;--text:#f8f4ff!important;--muted:#bcb0ce!important;--panel:#11101b!important;--panel-2:#19152a!important}html{background:#050408!important;color-scheme:dark}body{background-color:#050408!important;color:#f8f4ff!important}header,.site-header{background:rgba(5,4,8,.96)!important;border-color:#563078!important}nav a:hover,nav a.active,.brand span,.eyebrow,.back,.arrow,.text-btn{color:#ff9b35!important}.panel,.home-card,.player-gfx-panel,.game-card,.hero-card,.card,.team-card,.stat-card,.table-wrap,.content-card,.feature-card,.info-card,.bracket-card,.match-card,.history-card,.video-card,.rule-card,.conference-card,.search-panel,.standings-card{background-color:#11101b!important;border-color:#38234f!important}.home-card:hover,.team-card:hover,.card:hover{background-color:#19152a!important;border-color:#ff7918!important}button,.primary-btn,.discord-btn,.btn-primary,.vote-btn,.search-btn{background:#ff7918!important;border-color:#ff9b35!important;color:#160b1e!important}.secondary-btn,.btn-secondary{border-color:#8050a7!important;color:#ffd0a1!important}a:hover{color:#ffb66f}footer,.quick-stats,.section.alt{background-color:#09070f!important;border-color:#38234f!important}th{background:#19152a!important;color:#ffb66f!important}td,th{border-color:#38234f!important}input,select,textarea{background:#0c0a13!important;color:#f8f4ff!important;border-color:#563078!important}.badge,.pill,.tag{border-color:#8050a7!important}</style>
-<link rel="stylesheet" href="/halloween-cleanup.css">
+</style><style id="vfa-christmas-theme">:root{--bg:#050408!important;--surface:#11101b!important;--surface-2:#19152a!important;--surface-3:#241b39!important;--line:#563078!important;--line-soft:#38234f!important;--blue:#ff7918!important;--blue-2:#ff9b35!important;--gold:#ff7918!important;--gold-soft:#ffd0a1!important;--text:#f8f4ff!important;--muted:#bcb0ce!important;--panel:#11101b!important;--panel-2:#19152a!important}html{background:#050408!important;color-scheme:dark}body{background-color:#050408!important;color:#f8f4ff!important}header,.site-header{background:rgba(5,4,8,.96)!important;border-color:#563078!important}nav a:hover,nav a.active,.brand span,.eyebrow,.back,.arrow,.text-btn{color:#ff9b35!important}.panel,.home-card,.player-gfx-panel,.game-card,.hero-card,.card,.team-card,.stat-card,.table-wrap,.content-card,.feature-card,.info-card,.bracket-card,.match-card,.history-card,.video-card,.rule-card,.conference-card,.search-panel,.standings-card{background-color:#11101b!important;border-color:#38234f!important}.home-card:hover,.team-card:hover,.card:hover{background-color:#19152a!important;border-color:#ff7918!important}button,.primary-btn,.discord-btn,.btn-primary,.vote-btn,.search-btn{background:#ff7918!important;border-color:#ff9b35!important;color:#160b1e!important}.secondary-btn,.btn-secondary{border-color:#8050a7!important;color:#ffd0a1!important}a:hover{color:#ffb66f}footer,.quick-stats,.section.alt{background-color:#09070f!important;border-color:#38234f!important}th{background:#19152a!important;color:#ffb66f!important}td,th{border-color:#38234f!important}input,select,textarea{background:#0c0a13!important;color:#f8f4ff!important;border-color:#563078!important}.badge,.pill,.tag{border-color:#8050a7!important}</style>
+<link rel="stylesheet" href="/christmas-theme.css">
 <style>
 :root{--official-gold:#f6be64;--official-orange:#ff7a32;--official-purple:#7c4d9e}
 .official-stats{display:grid;gap:18px}
