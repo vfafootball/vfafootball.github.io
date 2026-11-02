@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050408"><meta name="description" content="VFA Season 5 MVP, DPOY and OPOY award odds and player races."><title>Awards Odds | VFA League Hub</title>
+<style>
+:root{--bg:#050408;--surface:#11101b;--surface-2:#19152a;--line:#563078;--gold:#ff9b35;--text:#f8f4ff;--muted:#bcb0ce}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -14%,rgba(111,43,105,.22),transparent 48%),#050408;color:var(--text);font:15px/1.6 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1100px,calc(100% - 32px));margin:auto}header{position:sticky;top:0;z-index:10;background:rgba(5,4,8,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.header-inner{width:min(1100px,calc(100% - 32px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:68px}.brand{font-weight:950;letter-spacing:.08em}.brand span{color:var(--gold)}nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}nav a,.nav-trigger{padding:9px 11px;border:0;border-radius:8px;background:transparent;color:var(--text);font:inherit;font-size:12px;font-weight:800;cursor:pointer}.nav-group{position:relative}.nav-menu{display:none;position:absolute;right:0;top:100%;min-width:190px;padding:9px;border:1px solid var(--line);border-radius:10px;background:#100d18;box-shadow:0 12px 32px #0008}.nav-group.open .nav-menu{display:grid}.nav-menu a{display:block}.menu-caption{padding:6px 10px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em}.page{padding:34px 0 50px}.eyebrow{color:var(--gold);font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}.page-head{margin-bottom:22px}.page-head h1{margin:5px 0;font-size:clamp(30px,5vw,44px);line-height:1.1;letter-spacing:-.04em}.page-head p{margin:8px 0 0;color:var(--muted);max-width:680px}.back{display:inline-block;margin-top:12px;color:var(--gold);font-size:12px;font-weight:850}.panel{padding:clamp(17px,3vw,28px);border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#15121d,#0c0a10);box-shadow:0 12px 30px #0005}
+/* VFA award odds counter */
+.odds-hub{margin:22px 0;padding:clamp(18px,3vw,28px);border:1px solid rgba(246,190,100,.32);border-radius:var(--radius);background:linear-gradient(145deg,#15130f,#090909 65%,#141014);box-shadow:var(--shadow)}
+.odds-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}.odds-heading h2{margin:4px 0;font-size:clamp(23px,3vw,31px);color:#f6be64}.odds-heading p,.odds-category-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.odds-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.odds-tab{border:1px solid var(--line);background:#111;color:var(--muted);padding:9px 18px;border-radius:9px;font-weight:850;letter-spacing:.06em;cursor:pointer}.odds-tab.is-active{background:linear-gradient(135deg,#f6be64,#e5a640);border-color:#f6be64;color:#111}.odds-category-head{margin:12px 0 14px}.odds-category-head h3{margin:0 0 5px;font-size:18px}.award-odds-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.award-odds-card{padding:15px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025);min-width:0}.award-player{display:flex;align-items:center;gap:11px}.award-player img{width:43px;height:43px;object-fit:contain;flex:0 0 auto}.award-player div{flex:1;min-width:0}.award-player h4{margin:0;font-size:15px}.award-player div span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.odds-percent{font-size:22px;color:#f6be64;white-space:nowrap}.odds-track{height:7px;margin:13px 0 10px;border-radius:99px;background:#292929;overflow:hidden}.odds-track span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#b78132,#f6be64)}.award-stats{margin:0;color:#c7c2cb;font-size:12px;line-height:1.55}.odds-disclaimer{margin:16px 0 0;padding-top:13px;border-top:1px solid rgba(255,255,255,.09);color:var(--muted);font-size:11px;line-height:1.55}[hidden]{display:none!important}
+@media(max-width:600px){.award-odds-grid{grid-template-columns:1fr}.odds-heading{align-items:flex-start}.odds-percent{font-size:20px}}
+
+
+
+/* Baltimore dynasty spotlight */
+.baltimore-dynasty{position:relative;overflow:hidden;margin:0 0 20px;padding:clamp(18px,3vw,30px);border:1px solid rgba(246,190,100,.34);border-radius:var(--radius);background:radial-gradient(ellipse at 100% 0%,rgba(117,62,160,.17),transparent 48%),linear-gradient(135deg,#111 0%,#080808 68%,#151019 100%);box-shadow:var(--shadow)}
+.baltimore-dynasty:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#f6be64,#8653a8)}
+.baltimore-dynasty-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.baltimore-dynasty-logo{width:58px;height:58px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4))}
+.baltimore-dynasty h2{margin:0;color:#f6be64;font-size:clamp(22px,3.5vw,31px);line-height:1.15;letter-spacing:-.025em}
+.baltimore-dynasty-kicker{margin:5px 0 0;color:#b7a7c6;font-size:10px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+.baltimore-dynasty p{color:#dedbe2;font-size:14px;line-height:1.8;margin:0}
+.baltimore-dynasty p strong{color:#fff}
+.baltimore-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:17px 0}
+.baltimore-stat{padding:12px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(255,255,255,.035)}
+.baltimore-stat small{display:block;color:#aaa3b2;font-size:10px;line-height:1.4}
+.baltimore-stat strong{display:block;margin-top:5px;color:#f6be64;font-size:clamp(19px,3vw,25px);line-height:1.1}
+.baltimore-stat span{display:block;margin-top:4px;color:#b7a7c6;font-size:10px;font-weight:750}
+.baltimore-dynasty-note{margin-top:14px!important;padding-top:13px;border-top:1px solid rgba(255,255,255,.1);font-size:12px!important;color:#bdb6c5!important}
+@media(max-width:650px){.baltimore-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.baltimore-dynasty-logo{width:48px;height:48px}}
+
+
+@media(max-width:700px){.header-inner{align-items:flex-start;flex-direction:column;padding:12px 0}nav{width:100%}.nav-menu{left:0;right:auto}}
+</style></head><body>
+<header><div class="header-inner"><a class="brand" href="index.html">VFA <span>LEAGUE HUB</span></a><nav>
+<a href="index.html">Home</a><a href="playoffs.html">Playoffs</a>
+
+<a href="streams.html">Streams</a>
+</nav></div></header>
+<main class="wrap page"><div class="page-head"><div class="eyebrow">VFA FOOTBALL • SEASON 5 ARCHIVE</div><h1>Awards Odds</h1><p>Track the MVP, Defensive Player of the Year, and Offensive Player of the Year races. Projections reflect the stats currently provided and are estimates, not official voting results.</p><a class="back" href="index.html">← Return to League Hub</a></div>
+<section class="odds-hub" id="award-odds" aria-labelledby="award-odds-title">
+  <div class="odds-heading"><div><div class="eyebrow">VFA AWARD WATCH</div><h2 id="award-odds-title">Award Odds Counter</h2><p>Projected chances based on current stats, production, and games played. These are estimates, not official voting results.</p></div><span class="status">LIVE RACE</span></div>
+  <div class="odds-tabs" role="tablist" aria-label="Award category">
+    <button class="odds-tab is-active" type="button" role="tab" aria-selected="true" data-odds-tab="dpoy">DPOY</button>
+    <button class="odds-tab" type="button" role="tab" aria-selected="false" data-odds-tab="mvp">MVP</button>
+    <button class="odds-tab" type="button" role="tab" aria-selected="false" data-odds-tab="opoy">OPOY</button>
+  </div>
+  <div class="odds-category" data-odds-panel="dpoy">
+    <div class="odds-category-head"><h3>Defensive Player of the Year</h3><p>Interceptions and games played weigh heavily in this projection.</p></div>
+    <div class="award-odds-grid">
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Envy</h4><span>Baltimore</span></div><strong class="odds-percent">28%</strong></div><div class="odds-track"><span style="width:28%"></span></div><p class="award-stats">8 defensive interceptions · 2 games (playoff-adjusted totals considered)</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544307428206714890.webp?size=240" alt="Nashville logo"><div><h4>Tfoggy</h4><span>Nashville</span></div><strong class="odds-percent">32%</strong></div><div class="odds-track"><span style="width:32%"></span></div><p class="award-stats">6 playoff-adjusted INTs · 4 games · sustained-production edge</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544149779255140404.webp?size=240" alt="Houston logo"><div><h4>Repentz</h4><span>Houston</span></div><strong class="odds-percent">24%</strong></div><div class="odds-track"><span style="width:24%"></span></div><p class="award-stats">5 playoff-adjusted INTs · 3 games</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544307428206714890.webp?size=240" alt="Nashville logo"><div><h4>Alvin</h4><span>Nashville</span></div><strong class="odds-percent">16%</strong></div><div class="odds-track"><span style="width:16%"></span></div><p class="award-stats">6 playoff-adjusted INTs · 5 games · most games played</p></article>
+    </div>
+  </div>
+  <div class="odds-category" data-odds-panel="mvp" hidden>
+    <div class="odds-category-head"><h3>Most Valuable Player</h3><p>Quarterback production, efficiency, and impact on winning shape this projection.</p></div>
+    <div class="award-odds-grid">
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Surmise</h4><span>Baltimore</span></div><strong class="odds-percent">42%</strong></div><div class="odds-track"><span style="width:42%"></span></div><p class="award-stats">36 TD · 3 INT · 2,517 yards · 66% completion · 24 playoff-adjusted TDs</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117789130756228.webp?size=240" alt="Minneapolis logo"><div><h4>Rehexxed</h4><span>Minneapolis</span></div><strong class="odds-percent">34%</strong></div><div class="odds-track"><span style="width:34%"></span></div><p class="award-stats">50 TD · 16 INT · 63% completion</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Zomtk</h4><span>Baltimore</span></div><strong class="odds-percent">15%</strong></div><div class="odds-track"><span style="width:15%"></span></div><p class="award-stats">641 yards · 8 TD · 28 receptions</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Envy</h4><span>Baltimore</span></div><strong class="odds-percent">9%</strong></div><div class="odds-track"><span style="width:9%"></span></div><p class="award-stats">13 receiving TDs · 655 yards · 31 receptions · 8 defensive INTs</p></article>
+    </div>
+  </div>
+  <div class="odds-category" data-odds-panel="opoy" hidden>
+    <div class="odds-category-head"><h3>Offensive Player of the Year</h3><p>Offensive output leads the projection; defensive interceptions are listed for context only.</p></div>
+    <div class="award-odds-grid">
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Surmise</h4><span>Baltimore · QB</span></div><strong class="odds-percent">34%</strong></div><div class="odds-track"><span style="width:34%"></span></div><p class="award-stats">36 TD · 2,517 yards · 66% completion</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Envy</h4><span>Baltimore · WR</span></div><strong class="odds-percent">31%</strong></div><div class="odds-track"><span style="width:31%"></span></div><p class="award-stats">13 receiving TDs · 655 yards · 31 receptions</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1547278734921564311.webp?size=240" alt="Washington logo"><div><h4>Web</h4><span>Washington · QB</span></div><strong class="odds-percent">20%</strong></div><div class="odds-track"><span style="width:20%"></span></div><p class="award-stats">23 TD · 7 INT · 1,427 yards · 61% completion</p></article>
+      <article class="award-odds-card"><div class="award-player"><img src="https://cdn.discordapp.com/emojis/1544117593349038200.webp?size=240" alt="Baltimore logo"><div><h4>Dill</h4><span>Baltimore · WR</span></div><strong class="odds-percent">15%</strong></div><div class="odds-track"><span style="width:15%"></span></div><p class="award-stats">446 yards · 6 TD · 4 interceptions at DB</p></article>
+    </div>
+  </div>
+  <p class="odds-disclaimer">Odds are editorial estimates based on the stats currently provided and VFA’s preference for games played. They are not generated from official voting or a live statistical feed.</p>
+</section>
+</main><footer class="wrap" style="padding:0 0 28px;color:var(--muted);font-size:11px">VFA Football • Awards Odds • Season 5</footer>
+<script>(()=>{const tabs=[...document.querySelectorAll('[data-odds-tab]')],panels=[...document.querySelectorAll('[data-odds-panel]')];tabs.forEach(tab=>tab.addEventListener('click',()=>{const key=tab.dataset.oddsTab;tabs.forEach(t=>{const active=t===tab;t.classList.toggle('is-active',active);t.setAttribute('aria-selected',String(active))});panels.forEach(panel=>panel.hidden=panel.dataset.oddsPanel!==key)}))})();</script>
+<script>(()=>{document.querySelectorAll('.nav-trigger').forEach(b=>b.addEventListener('click',()=>{const g=b.closest('.nav-group'),open=!g.classList.contains('open');document.querySelectorAll('.nav-group').forEach(x=>{x.classList.remove('open');x.querySelector('.nav-trigger').setAttribute('aria-expanded','false')});if(open){g.classList.add('open');b.setAttribute('aria-expanded','true')}}));document.addEventListener('click',e=>{if(!e.target.closest('.nav-group'))document.querySelectorAll('.nav-group').forEach(g=>{g.classList.remove('open');g.querySelector('.nav-trigger').setAttribute('aria-expanded','false')})})})();</script></body></html>
