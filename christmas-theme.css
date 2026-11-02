@@ -40,3 +40,25 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 
 .brand img,.brand-logo{width:42px;height:42px;object-fit:contain;display:block;flex:0 0 auto;filter:drop-shadow(0 0 12px rgba(231,196,119,.18))}
+
+
+/* Christmas polish: consistent controls and responsive winter championship GFX */
+:root{--bg:#050b09!important;--surface:#0d1712!important;--surface-2:#14231a!important;--line:rgba(220,65,65,.34)!important;--line-soft:rgba(226,238,224,.13)!important;--blue:#d92f3a!important;--blue-2:#ff6670!important;--gold:#e7c477!important;--text:#f7f5ee!important;--muted:#b9c8bc!important}
+body{background-color:#050b09!important;color:#f7f5ee!important}
+button,.btn,.button,.primary-btn,.btn-primary,.discord-btn,.vote-btn,.search-btn,input[type=submit],input[type=button],a.button,a.btn{background:linear-gradient(135deg,#a91f30,#d63742 58%,#b52235)!important;color:#fff9ee!important;border:1px solid rgba(231,196,119,.42)!important;border-radius:10px!important;box-shadow:0 5px 14px rgba(0,0,0,.18)!important;font-weight:800!important;transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease,color .16s ease!important}
+button:hover,.btn:hover,.button:hover,.primary-btn:hover,.btn-primary:hover,.discord-btn:hover,.vote-btn:hover,.search-btn:hover,input[type=submit]:hover,input[type=button]:hover,a.button:hover,a.btn:hover{background:linear-gradient(135deg,#17643b,#23834c)!important;border-color:rgba(231,196,119,.75)!important;color:#fff!important;box-shadow:0 7px 18px rgba(0,0,0,.24)!important}
+button:active,.btn:active,.button:active,input[type=submit]:active{filter:brightness(.96)}
+.secondary-btn,.btn-secondary,.secondary-button{background:linear-gradient(135deg,#123c27,#1b5b38)!important;color:#f5dfa4!important;border:1px solid rgba(231,196,119,.45)!important}
+.nav-trigger,.site-nav .nav-trigger{background:rgba(17,48,31,.45)!important;color:#f5dfa4!important;border:1px solid rgba(231,196,119,.24)!important;box-shadow:none!important}
+.nav-trigger:hover,.site-nav .nav-trigger:hover,.nav-group.open>.nav-trigger{background:rgba(174,34,49,.25)!important;border-color:rgba(231,196,119,.48)!important;color:#fff!important}
+input,select,textarea{background:#09140d!important;color:#f7f5ee!important;border-color:rgba(231,196,119,.3)!important}
+a{transition:color .16s ease,border-color .16s ease}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #e7c477!important;outline-offset:3px}
+.champions-bowl-feature{background:#07110b!important;border-color:rgba(231,196,119,.42)!important}
+.champions-bowl-art-image{padding:0!important;background:#07110b!important;overflow:hidden!important}
+.champions-bowl-image{display:block;width:100%;height:auto;max-height:none!important;object-fit:cover!important;object-position:center!important;border:0!important;image-rendering:auto}
+.champions-bowl-footer{background:linear-gradient(100deg,#0b1b12,#13271a,#0b1b12)!important;border-top:1px solid rgba(231,196,119,.25)!important}
+.champions-bowl-footer strong{color:#f5dfa4!important}.champions-bowl-footer small{color:#c4d0c5!important}
+.champions-bowl-footer a{background:linear-gradient(135deg,#a91f30,#d63742)!important;color:#fff9ee!important;border-color:rgba(231,196,119,.42)!important}
+.christmas-note,.format-note{background:linear-gradient(110deg,#0d1d13,#17251a,#0d1d13)!important;border-color:rgba(231,196,119,.3)!important}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
