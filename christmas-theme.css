@@ -7,9 +7,8 @@
  --text:#f7f5ee!important;--muted:#b9c8bc!important;--panel:#0d1712!important;--panel-2:#14231a!important;
 }
 html{background:#050b09!important;color-scheme:dark;scroll-behavior:smooth}
-body{background:radial-gradient(ellipse at 50% -18%,rgba(28,110,63,.24),transparent 48%),radial-gradient(ellipse at 100% 0%,rgba(180,32,48,.13),transparent 35%),#050b09!important;color:var(--text)!important}
-body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.15;background-image:radial-gradient(circle at 12% 17%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 76% 29%,#dcefe3 0 1px,transparent 1.8px),radial-gradient(circle at 41% 68%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 88% 82%,#dcefe3 0 1px,transparent 1.8px);background-size:190px 190px,230px 230px,270px 270px,310px 310px}
-body>*{position:relative;z-index:1}
+body{isolation:isolate;background:radial-gradient(ellipse at 50% -18%,rgba(28,110,63,.24),transparent 48%),radial-gradient(ellipse at 100% 0%,rgba(180,32,48,.13),transparent 35%),#050b09!important;color:var(--text)!important}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.15;background-image:radial-gradient(circle at 12% 17%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 76% 29%,#dcefe3 0 1px,transparent 1.8px),radial-gradient(circle at 41% 68%,#fff 0 1px,transparent 1.8px),radial-gradient(circle at 88% 82%,#dcefe3 0 1px,transparent 1.8px);background-size:190px 190px,230px 230px,270px 270px,310px 310px}
 header,.site-header,.header{background:rgba(4,12,8,.96)!important;border-color:rgba(220,65,65,.38)!important;box-shadow:0 8px 30px rgba(0,0,0,.35)}
 .brand span,.eyebrow,.kicker,.hero-kicker,.back,.arrow,.text-btn,.home-card .arrow{color:var(--gold)!important}
 .panel,.home-card,.player-gfx-panel,.game-card,.hero-card,.card,.team-card,.stat-card,.table-wrap,.content-card,.feature-card,.info-card,.bracket-card,.match-card,.history-card,.video-card,.rule-card,.conference-card,.search-panel,.standings-card,.playin-card,.playoff-card,.champions-bowl-feature,.live-match-panel,.directory-card,.league-link-grid a{background:linear-gradient(145deg,rgba(19,39,27,.96),rgba(8,19,13,.98))!important;border-color:var(--line-soft)!important}
