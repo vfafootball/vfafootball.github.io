@@ -39,3 +39,5 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .christmas-final-four .versus small{display:block;margin-top:5px;color:#b9c8bc;font-size:9px}
 @media(max-width:650px){.christmas-final-four{grid-template-columns:1fr}.christmas-final-four .playin-card{min-height:0}.christmas-final-four .team img{width:62px;height:62px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+.brand img,.brand-logo{width:42px;height:42px;object-fit:contain;display:block;flex:0 0 auto;filter:drop-shadow(0 0 12px rgba(231,196,119,.18))}
