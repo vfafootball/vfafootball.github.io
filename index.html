@@ -450,14 +450,20 @@ main.page .stream-video-frame,main.page .vfa-chat,main.page .player-gfx-wrap{ove
    const res=await fetch(endpoint,{headers:{apikey:key,Authorization:'Bearer '+key}});
    if(!res.ok)throw new Error('HTTP '+res.status);
    const rows=await res.json();
+   const nflNames={
+    'Maryland Royals':'Baltimore Ravens',
+    'Texas Drillers':'Houston Texans',
+    'Illinois Bucks':'Chicago Bears',
+    'Nevada Renegades':'Las Vegas Raiders'
+   };
    const games=rows.map(g=>{
     const teams=Array.isArray(g.team_names)?g.team_names:[];
-    const m=String(g.score_text||'').match(/(\d+)\s*[-–:]\s*(\d+)/);
+    const m=String(g.score_text||'').match(/(\\d+)\\s*[-–:]\\s*(\\d+)/);
     if(teams.length<2||!m)return null;
-    return {home:teams[0],away:teams[1],hs:Number(m[1]),as:Number(m[2])};
+    return {home:nflNames[teams[0]]||teams[0],away:nflNames[teams[1]]||teams[1],hs:Number(m[1]),as:Number(m[2])};
    }).filter(Boolean).slice(0,6);
    if(!games.length){list.innerHTML='<div class="empty-state">No completed Season 6 matchups have been uploaded yet.</div>';return;}
-   list.innerHTML=games.map(g=>'<article class="matchup-card"><div class="matchup-meta"><span class="final-tag">SEASON 6 FINAL</span><span class="status">FINAL</span></div><div class="final-team"><span>'+esc(g.home)+'</span><strong>'+g.hs+'</strong></div><div class="final-score">FINAL</div><div class="final-team"><span>'+esc(g.away)+'</span><strong>'+g.as+'</strong></div></article>').join('');
+   list.innerHTML=games.map(g=>'<article class="matchup-card"><div class="matchup-meta"><span class="final-tag">SEASON 6 FINAL</span><span class="status">FINAL</span></div><div class="matchup-row"><div class="matchup-team"><strong>'+esc(g.home)+'</strong><span>'+g.hs+'</span></div><div class="vs">FINAL</div><div class="matchup-team"><strong>'+esc(g.away)+'</strong><span>'+g.as+'</span></div></div></article>').join('');
    status.textContent='Synced from Season 6 Player Statistics • '+games.length+' final(s)';
   }catch(err){console.error('VFA Season 6 finals:',err);list.innerHTML='<div class="empty-state">Final scores could not load right now. Please check Player Statistics.</div>';status.textContent='Season 6 results sync unavailable.';}
  }
